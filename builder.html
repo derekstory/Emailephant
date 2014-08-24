@@ -1,0 +1,177 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emailephant: Free Email Builder</title>
+    <meta name="description" content="Emailephant is the most flexible email builder available. Quickly build emails using modules through our templates or your own custom code.">
+    <link href="img/favicon.png" rel="shortcut icon" />
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="js/vendor/modernizr.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Advent+Pro:200,700,400' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    
+    <div id="pageContain">
+
+      <nav id="builderNav" class="bgblack">
+	<a href="index.html">
+	  <img src="img/icon.png" alt="Emailephant" id="icon" class="transitionFast">
+	</a>
+	<div id="navOrange"></div>
+      </nav>
+
+      <div id="editLink">
+	Text: <input id="linktext"/><br/>
+	Link: <input id="linkhref"/><br/>
+      </div>
+
+      <div id="builder">
+	<div id="emailPreview" class="transitionMedium">
+
+	  <div id="editor">
+	    <button onClick="bold(); output.value=input.innerHTML;" class="editButton" id="buttonBold"><b>B</b></button>
+	    <button onClick="italic(); output.value=input.innerHTML;" class="editButton"><i>I</i></button>
+	    <button onClick="underline(); output.value=input.innerHTML;" class="editButton"><u>U</u></button>
+	    <button onClick="link(); output.value=input.innerHTML;"  class="editButton">Link</button>
+	    <button onClick="superscript(); output.value=input.innerHTML;" class="editButton">X<sup>x</sup></button>
+	    <button class="editButton" id="colorWrap">Color</button>
+	    <div id="colorChoiceWrap">
+	      <button onClick="black(); output.value=input.innerHTML;" class="colorChoice editButton colorBlack">black</button>
+	      <button onClick="blue(); output.value=input.innerHTML;" class="colorChoice editButton colorBlue">blue</button>
+	      <button onClick="white(); output.value=input.innerHTML;" class="colorChoice editButton colorWhite">white</button>
+	      <button onClick="gold(); output.value=input.innerHTML;" class="colorChoice editButton colorGold">gold</button>
+	    </div>
+	    <button class="editButton" id="alignWrap">Align</button>
+	    <div id="alignChoiceWrap">
+	      <button onClick="leftalign(); output.value=input.innerHTML;" class="alignChoice editButton">left</button>
+	      <button onClick="centeralign(); output.value=input.innerHTML;" class="alignChoice editButton">center</button>
+	      <button onClick="rightalign(); output.value=input.innerHTML;" class="alignChoice editButton">right</button>
+	      <button onClick="justifyalign(); output.value=input.innerHTML;" class="alignChoice editButton">justify</button>
+	    </div>
+	    <button class="editButton" id="symbolWrap">Symbol</button>
+	    <div id="symbolChoiceWrap">
+	      <button onClick="rball(); output.value=input.innerHTML;" class="symbolChoice editButton" id="buttonBold">&reg;</button>
+	      <button onClick="trademark(); output.value=input.innerHTML;" class="symbolChoice editButton" id="buttonBold">&trade;</button>
+	    </div>
+	    <button class="editButton" id="fontsizeWrap">Font Size</button>
+	    <div id="fontsizeChoiceWrap">
+	      <button onClick="font14(); output.value=input.innerHTML;" class="fontsizeChoice editButton">14px</button>
+	      <button onClick="font18(); output.value=input.innerHTML;" class="fontsizeChoice editButton">18px</button>
+	      <button onClick="font22(); output.value=input.innerHTML;" class="fontsizeChoice editButton">22px</button>
+	      <button onClick="font26(); output.value=input.innerHTML;" class="fontsizeChoice editButton">26px</button>
+	      <button onClick="font30(); output.value=input.innerHTML;" class="fontsizeChoice editButton">30px</button>
+	      <button onClick="font34(); output.value=input.innerHTML;" class="fontsizeChoice editButton">34px</button>
+	      <button onClick="font40(); output.value=input.innerHTML;" class="fontsizeChoice editButton">40px</button>
+	    </div>
+	    <button onClick="undo(); output.value=input.innerHTML;"  class="editButton">Undo</button>
+	    <button onClick="redo(); output.value=input.innerHTML;"  class="editButton">Redo</button>
+	    <button class="editButton closeEdit">&#10003;</button>
+	  </div>
+
+	  <div id="emailCode">
+	    
+	    <table class="body bggrey" style="width: 100%; min-height: 100%; font-family: 'Arial', Helvetica, sans-serif; -webkit-text-size-adjust: none; border-spacing: 0; border-collapse: collapse; background: #e5e5e5; margin: 0; padding: 0;" bgcolor="#E5E5E5">
+	      <tr>
+		<td align="center" class="vatop" style="vertical-align: top; padding: 0px;" valign="top">
+		  <center style="width: 100%; min-width: 560px;">
+		    
+		    <table bgcolor="#BEBEBE" style="width: 560px; text-align: inherit; border-spacing: 0; border-collapse: collapse; margin: 0 auto;" align="center">
+		      <tr>
+			<td style="padding: 1px;">
+			  <table class="container" style="width: 560px; text-align: inherit; border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
+			    <tr>
+			      <td class="bgwhite" style="background: #ffffff; padding: 0px;" bgcolor="#FFFFFF">
+				<center style="width: 100%; min-width: 560px;">
+				  
+				  <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;">
+				    <tr>
+				      <td class="col-10" style="width: 100%; padding: 0px;">
+					<img src="images/masthead.jpg" alt="Silhouette of two soldiers on patrol" style="display: block; width: auto; padding: 0; border: 0;" />
+				      </td>
+				    </tr>
+				  </table>
+				  
+				  <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;">
+				    <tr>
+				      <td height="20" style="padding: 0px;"></td>
+				    </tr>
+				  </table>
+				  
+
+				  <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0; background: white;">
+				    <tr>
+				      <td class="black font16 pad24" style="color: #000000; font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 14px; line-height: 22px; padding: 0px 24px;" align="left">
+					<div contenteditable="true" class="editArea"><font>Sed&reg; ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur <a href="">aut</a> odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</font></div>
+
+				      </td>
+				    </tr>
+
+				  </table>
+				  <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;">
+				    <tr>
+				      <td height="30" style="padding: 0px;"></td>
+				    </tr>
+				  </table>
+				  
+				</center>
+			      </td>
+			    </tr>
+			  </table>
+			</td>
+		      </tr>
+		    </table>
+		    
+		  </center>
+		</td>
+	      </tr>
+	    </table>
+	  </div>
+
+	</div>
+
+      	<div id="templateChoice">
+	  
+	  <div class="template">
+	    <img src="http://zurb.com/ink/images/templates/basic.jpg" alt="" width="100%" />
+	    <div class="templateTitle transitionFast">Title goes here</div>
+	  </div>
+
+	  <div class="template">
+	    <img src="http://zurb.com/ink/images/templates/basic.jpg" alt="" width="100%" />
+	    <div class="templateTitle transitionFast">Title goes here</div>
+	  </div>
+
+	  <div class="template">
+	    <img src="http://zurb.com/ink/images/templates/basic.jpg" alt="" width="100%" />
+	    <div class="templateTitle transitionFast">Title goes here</div>
+	  </div>
+
+	  <div class="template">
+	    <img src="http://zurb.com/ink/images/templates/basic.jpg" alt="" width="100%" />
+	    <div class="templateTitle transitionFast">Title goes here</div>
+	  </div>
+
+	  <div class="template">
+	    <img src="http://zurb.com/ink/images/templates/basic.jpg" alt="" width="100%" />
+	    <div class="templateTitle transitionFast">Title goes here</div>
+	  </div>
+
+	</div>
+      </div>
+
+    </div>
+    
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script src="js/emailephant.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+
+  </body>
+</html>
+
+
