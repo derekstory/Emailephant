@@ -14,7 +14,7 @@ function underline() {
 }
 
 function link() {
-    document.execCommand('CreateLink', false, '#');
+    document.execCommand('CreateLink', false, 'http://');
 }
 
 function superscript() {
@@ -156,7 +156,7 @@ function getSelectionStartNode(){
 
 $(function() {
     $("#editLink").hide();
-    $(".editArea").bind('keyup click', function(e) {
+    $(".editArea").bind('dblclick', function(e) {
         var $node = $(getSelectionStartNode());
         if ($node.is('a')) {
             $("#editLink").css({
@@ -166,9 +166,8 @@ $(function() {
             $("#linktext").val($node.text());
             $("#linkhref").val($node.attr('href'));
             $("#linkpreview").attr('href', $node.attr('href'));
-        } else {
-            $("#editLink").hide();
-        }
+        } 
+
     });
     $("#linktext").bind('keyup change', function() {
 	var $node = $("#editLink").data('node');
@@ -179,25 +178,18 @@ $(function() {
 	$node.attr('href', $(this).val());
     });
 });
-
+$("#linkEditDone").click(function() { 
+    $("#editLink").hide();
+});
 //Insert BR on return keystroke
 $('div[contenteditable=true]').keydown(function(e) {
     // trap the return key being pressed
     if (e.keyCode == 13) {
-      // insert 2 br tags (if only one br tag is inserted the cursor won't go to the second line)
-      document.execCommand('insertHTML', false, '<br><br>');
-      // prevent the default behaviour of return key pressed
-      return false;
+	// insert 2 br tags (if only one br tag is inserted the cursor won't go to the second line)
+	document.execCommand('insertHTML', false, '<br><br>');
+	// prevent the default behaviour of return key pressed
+	return false;
     }
-  });
-
-//Lower opaity of sibling edit areas on hover
-$(".editArea").focus(function() {
-    $('.editArea').css('opacity', '.2');
-    $(this).css('opacity', '1');
-});
-$(".editArea").blur(function() {
-    $('.editArea').css('opacity', '1');
 });
 
 //Display Color options on click

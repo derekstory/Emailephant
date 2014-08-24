@@ -1,6 +1,8 @@
 body {
     width: 100%;
     margin: 0;
+    padding: 0;
+    min-height: 100%;
 }
 
 /*----------------------- GENERAL STYLES - reusable - classes only ------------------*/ 
@@ -224,8 +226,8 @@ img#icon:hover {
 }
 @media only screen and (max-width: 980px){
     #templateChoice, #emailPreview {
-    height: 700px !important;
-    position: relative;
+	height: 700px !important;
+	position: relative;
     }
     #templateChoice {
 	float: right;
@@ -268,14 +270,22 @@ div font{
     background: rgba(0,0,0,.8);
 }
 .editArea {
-     -webkit-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
     -moz-transition: all .5s ease;
     -ms-transition: all .5s ease;
     -o-transition: all .5s ease;
     transition: all .5s ease;
 }
+.editArea:hover {
+    opacity: .5 !important;
+    cursor: pointer !important;
+}
 .editArea:focus {
+    opacity: 1 !important;
     outline: 2px solid orange;
+}
+.editArea:focus, .editArea:focus font:hover {
+    cursor: text !important;
 }
 
 /* Side Text Editor */
@@ -305,6 +315,7 @@ div font{
 #editor {
     width: 0;
     position: fixed;
+    top: 55px;
     overflow: hidden;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
@@ -328,16 +339,27 @@ button:focus {
     color: white;
     width: 300px;
     height: auto;
+    margin-top: 120px;
     position: absolute;
-    top: 0;
+    top: 100;
     left: 0;
     z-index: 40;
+}
+#linkEditDone {
+    margin-top: 10px;
+    margin-left: 45px;
+    padding: 5px;
+    width: 80px;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 5px;
+    display: block;
 }
 #editLink input {
     width: 200px;
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 5px;
+    margin-left: 10px;
     height: 30px;
 }
 #editLink input:focus {
@@ -402,15 +424,7 @@ button:focus {
     opacity: .7;
 }
 
-/*Email Styling*/
-td font {
-    line-height: 1.3;
-}
-sup {
-    vertical-align: super;
-    line-height: 1.2;
-    font-size: 60%;
-} 
-font a {
-    color: red;
+/*Email Styles*/
+table a {
+    text-decoration: underline;
 }
