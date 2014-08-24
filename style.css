@@ -287,6 +287,9 @@ div font{
 .editArea:focus, .editArea:focus font:hover {
     cursor: text !important;
 }
+.editArea:focus, .editArea:focus a font:hover {
+    cursor: pointer !important;
+}
 
 /* Side Text Editor */
 .close {
@@ -354,6 +357,7 @@ button:focus {
     text-align: center;
     border-radius: 5px;
     display: block;
+    background: orange;
 }
 #editLink input {
     width: 200px;
@@ -367,7 +371,7 @@ button:focus {
 }
 
 /*Expandable Menu options*/
-#colorChoiceWrap, #alignChoiceWrap, #fontsizeChoiceWrap, #symbolChoiceWrap {
+#colorChoiceWrap, #alignChoiceWrap, #fontsizeChoiceWrap, #symbolChoiceWrap, #linkChoiceWrap {
     height: 0;
     overflow: hidden;
     -webkit-transition: all .3s ease;
@@ -376,8 +380,8 @@ button:focus {
     -o-transition: all .3s ease;
     transition: all .3s ease;
 }
-.colorChoiceActive {
-    height: 123px !important;
+.colorChoiceActive, .linkChoiceActive {
+    height: 155px !important;
 }
 .alignChoiceActive {
     height: 123px !important;
@@ -386,45 +390,60 @@ button:focus {
     height: 215px !important;
 }
 .symbolChoiceActive {
-    height: 60px !important;
+    height: 123px !important;
 }
+
 .fontsizeChoice, .alignChoice, .symbolChoice {
     background: grey;
 }
 
 /*Editor Color Choice Buttons*/
-.colorBlack {
+.colorBlack, .linkblack {
     background: #000000;
 }
-.colorBlack:hover {
+.colorBlack:hover, .linkblack:hover {
     opacity: .7;
     background: #000000;
 }
-.colorBlue {
+.colorBlue, .linkblue {
     background: #00365b;
 }
-.colorBlue:hover {
+.colorBlue:hover, .linkblue:hover {
     background: #00365b;
     opacity: .7;
 }
-.colorWhite {
+.colorWhite, .linkwhite {
     background: #ffffff;
     color: black;
 }
-.colorWhite:hover {
+.colorWhite:hover, .linkwhite:hover {
     background: #ffffff;
     opacity: .7;
     color: black;
 }
-.colorGold {
+.colorGold, .linkgold {
     background: #C1A04D;
 }
-.colorGold:hover {
+.colorGold:hover, .linkgold:hover {
     background: #C1A04D;
     opacity: .7;
 }
-
+.colorGrey, .linkgrey {
+    background: #3d3d3d;
+}
+.colorGrey:hover, .linkgrey:hover {
+    background: #3d3d3d;
+    opacity: .7;
+}
 /*Email Styles*/
 table a {
     text-decoration: underline;
+}
+sup {
+    font-size: 60%;
+    line-height: 1;
+    vertical-align: super;
+}
+font:hover {
+    cursor: pointer !important;
 }

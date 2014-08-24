@@ -12,11 +12,27 @@ function underline() {
     document.execCommand('StyleWithCSS', false, false);
     document.execCommand('underline', false, null);
 }
-
-function link() {
+//Links
+function linkblack() {
     document.execCommand('CreateLink', false, 'http://');
+    document.execCommand("foreColor",false, '#000000');
 }
-
+function linkblue() {
+    document.execCommand('CreateLink', false, 'http://');
+    document.execCommand("foreColor",false, '#00365b');
+}
+function linkwhite() {
+    document.execCommand('CreateLink', false, 'http://');
+    document.execCommand("foreColor",false, '#ffffff');
+}
+function linkgold() {
+    document.execCommand('CreateLink', false, 'http://');
+    document.execCommand("foreColor",false, '#C1A04D');
+}
+function linkgrey() {
+    document.execCommand('CreateLink', false, 'http://');
+    document.execCommand("foreColor",false, '#3d3d3d');
+}
 function superscript() {
     document.execCommand('superscript', false, null);
 }
@@ -39,7 +55,12 @@ function rball() {
 function trademark() {
     document.execCommand('insertHTML', false, '&trade;');
 }
-
+function copyright() {
+    document.execCommand('insertHTML', false, '&copy;');
+}
+function bullet() {
+    document.execCommand('insertHTML', false, '&bull;');
+}
 //Font Color
 function blue() {
     var colorpicker = "#00365b";
@@ -58,7 +79,11 @@ function gold() {
     document.execCommand('StyleWithCSS', false, false);
     document.execCommand("foreColor",false, "#C1A04D");
 }
-
+function grey() {
+    var colorpicker = "#3d3d3d";
+    document.execCommand('StyleWithCSS', false, false);
+    document.execCommand("foreColor",false, colorpicker);
+}
 //Font Sizes
 function font14() {
     document.execCommand("fontSize", false, "1");
@@ -158,7 +183,7 @@ $(function() {
     $("#editLink").hide();
     $(".editArea").bind('dblclick', function(e) {
         var $node = $(getSelectionStartNode());
-        if ($node.is('a')) {
+        if ($node.is('a, a font')) {
             $("#editLink").css({
 		top: $node.offset().top - $('#editLink').height() - 5,
 		left: $node.offset().left
@@ -192,9 +217,20 @@ $('div[contenteditable=true]').keydown(function(e) {
     }
 });
 
+
+//Display link options on click
+$("#linkWrap").click(function() {
+    $('#linkChoiceWrap').toggleClass('linkChoiceActive');
+    $('#colorChoiceWrap').removeClass('colorChoiceActive');
+    $('#alignChoiceWrap').removeClass('alignChoiceActive');
+    $('#fontsizeChoiceWrap').removeClass('fontsizeChoiceActive');
+    $('#symbolChoiceWrap').removeClass('symbolChoiceActive');
+    return false;
+});
 //Display Color options on click
 $("#colorWrap").click(function() {
     $('#colorChoiceWrap').toggleClass('colorChoiceActive');
+    $('#linkChoiceWrap').removeClass('linkChoiceActive');
     $('#alignChoiceWrap').removeClass('alignChoiceActive');
     $('#fontsizeChoiceWrap').removeClass('fontsizeChoiceActive');
     $('#symbolChoiceWrap').removeClass('symbolChoiceActive');
@@ -203,6 +239,7 @@ $("#colorWrap").click(function() {
 //Display align options on click
 $("#alignWrap").click(function() {
     $('#alignChoiceWrap').toggleClass('alignChoiceActive');
+    $('#linkChoiceWrap').removeClass('linkChoiceActive');
     $('#colorChoiceWrap').removeClass('colorChoiceActive');
     $('#fontsizeChoiceWrap').removeClass('fontsizeChoiceActive');
     $('#symbolChoiceWrap').removeClass('symbolChoiceActive');
@@ -211,13 +248,16 @@ $("#alignWrap").click(function() {
 //Display fontsize options on click
 $("#fontsizeWrap").click(function() {
     $('#fontsizeChoiceWrap').toggleClass('fontsizeChoiceActive');
+    $('#linkChoiceWrap').removeClass('linkChoiceActive');
     $('#alignChoiceWrap').removeClass('alignChoiceActive');
     $('#colorChoiceWrap').removeClass('colorChoiceActive');
     $('#symbolChoiceWrap').removeClass('symbolChoiceActive');
     return false;
 });
+//Display symbol options on click
 $("#symbolWrap").click(function() {
     $('#symbolChoiceWrap').toggleClass('symbolChoiceActive');
+    $('#linkChoiceWrap').removeClass('linkChoiceActive');
     $('#fontsizeChoiceWrap').removeClass('fontsizeChoiceActive');
     $('#alignChoiceWrap').removeClass('alignChoiceActive');
     $('#colorChoiceWrap').removeClass('colorChoiceActive');
