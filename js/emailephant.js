@@ -190,9 +190,7 @@ $(function() {
             }).show().data('node', $node);
             $("#linktext").val($node.text());
             $("#linkhref").val($node.attr('href'));
-            $("#linkpreview").attr('href', $node.attr('href'));
         } 
-
     });
     $("#linktext").bind('keyup change', function() {
 	var $node = $("#editLink").data('node');
@@ -206,6 +204,33 @@ $(function() {
 $("#linkEditDone").click(function() { 
     $("#editLink").hide();
 });
+
+
+
+//Edit image src and alt text on click
+var imgChange;
+$(function () {
+    $("#editImage").hide();
+    $("img").dblclick(function () {
+        imgChange = this;
+        $('#imageAlt').val($(imgChange).attr('alt'));
+        $('#imageSrc').val($(imgChange).attr('src'));
+        $("#editImage").css({
+            top: $(this).offset().top - $('#editImage').height() - 5,
+            left: $(this).offset().left
+        }).show();
+    });
+});
+$("#imageEditDone").click(function () {
+    $("#editImage").hide();
+    var imgSrc = $("#imageSrc").val();
+    var imgAlt = $("#imageAlt").val();
+    $(imgChange).attr('src', imgSrc).attr('alt', imgAlt);
+});
+
+
+
+
 //Insert BR on return keystroke
 $('div[contenteditable=true]').keydown(function(e) {
     // trap the return key being pressed
@@ -216,7 +241,6 @@ $('div[contenteditable=true]').keydown(function(e) {
 	return false;
     }
 });
-
 
 //Display link options on click
 $("#linkWrap").click(function() {
