@@ -1,3 +1,28 @@
+//Promt users to confirm if they want to leave page
+var confirmOnPageExit = function (e) 
+{
+    // If we haven't been passed the event get the window.event
+    e = e || window.event;
+
+    var message = 'If you leave this page, you will lose any unsaved changes.';
+
+    // For IE6-8 and Firefox prior to version 4
+    if (e) 
+    {
+        e.returnValue = message;
+    }
+
+    // For Chrome, Safari, IE8+ and Opera 12+
+    return message;
+};
+window.onload = function() {
+    //Turn prompt on
+    //window.onbeforeunload = confirmOnPageExit;
+    //Turn prompt off
+    window.onbeforeunload = null;
+};
+
+
 //Contenteditable button commands
 function bold() {
     document.execCommand('StyleWithCSS', false, false);
@@ -170,6 +195,8 @@ $('.closeEdit').click(function(){
     $('#editor').css('width', '0');    
 });
 
+
+
 //Edit a href on click
 function getSelectionStartNode(){
     if (window.getSelection) { // should work in webkit/ff
@@ -187,7 +214,7 @@ $(function() {
             $("#editLink").css({
 		top: $node.offset().top - $('#editLink').height() - 5,
 		left: $node.offset().left
-            }).show().data('node', $node);
+            }).fadeIn(200).data('node', $node);
             $("#linktext").val($node.text());
             $("#linkhref").val($node.attr('href'));
         } 
@@ -202,33 +229,62 @@ $(function() {
     });
 });
 $("#linkEditDone").click(function() { 
-    $("#editLink").hide();
+    $("#editLink").fadeOut(200);
 });
 
 
 
-//Edit image src and alt text on click
+//Edit image src and alt text on click (non-linked image)
 var imgChange;
 $(function () {
     $("#editImage").hide();
-    $("img").dblclick(function () {
+    $("td > img").dblclick(function () {
         imgChange = this;
         $('#imageAlt').val($(imgChange).attr('alt'));
         $('#imageSrc').val($(imgChange).attr('src'));
         $("#editImage").css({
             top: $(this).offset().top - $('#editImage').height() - 5,
             left: $(this).offset().left
-        }).show();
+        }).fadeIn(200);
     });
 });
 $("#imageEditDone").click(function () {
-    $("#editImage").hide();
+    $("#editImage").fadeOut(200);
     var imgSrc = $("#imageSrc").val();
     var imgAlt = $("#imageAlt").val();
     $(imgChange).attr('src', imgSrc).attr('alt', imgAlt);
 });
 
 
+
+//Edit image src and alt text on click (linked image)
+var linkedimgChange;
+$(function () {
+    $("#editImageLink").hide();
+    $("a").dblclick(function () {
+        linkedimgChange = this;
+        linkedimgChangeImg = $('img', this);
+        if ($(linkedimgChange).children('img').length > 0) {
+            $('#linkedimageAlt').val($(linkedimgChangeImg).attr('alt'));
+            $('#linkedimageSrc').val($(linkedimgChangeImg).attr('src'));
+            $('#linkedimageLink').val($(linkedimgChange).attr('href'));
+            $("#editImageLink").css({
+                top: $(this).offset().top - $('#editImageLink').height() - 5,
+                left: $(this).offset().left
+            }).fadeIn(200);
+        }
+    });
+});
+
+
+$("#linkedimageEditDone").click(function () {
+    $("#editImageLink").fadeOut(200);
+    var linkedimgSrc = $("#linkedimageSrc").val();
+    var linkedimgAlt = $("#linkedimageAlt").val();
+    var linkedimgLink = $("#linkedimageLink").val();
+    $(linkedimgChangeImg).attr('src', linkedimgSrc).attr('alt', linkedimgAlt);
+    $(linkedimgChange).attr('href', linkedimgLink);
+});
 
 
 //Insert BR on return keystroke
@@ -286,5 +342,13 @@ $("#symbolWrap").click(function() {
     $('#alignChoiceWrap').removeClass('alignChoiceActive');
     $('#colorChoiceWrap').removeClass('colorChoiceActive');
     return false;
+});
+
+
+
+
+//Prevent email links from working in editor
+$('td a').click(function (e) {
+    e.preventDefault();
 });
 

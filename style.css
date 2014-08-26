@@ -335,7 +335,7 @@ button:focus {
 }
 
 /*Insert link address box*/
-#editLink, #editImage {
+#editLink, #editImage, #editImageLink {
     border: 2px solid orange;
     padding: 10px;;
     background-color: rgba(0,0,0,.8);
