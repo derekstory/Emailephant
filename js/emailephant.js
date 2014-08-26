@@ -254,7 +254,15 @@ $("#imageEditDone").click(function () {
     var imgAlt = $("#imageAlt").val();
     $(imgChange).attr('src', imgSrc).attr('alt', imgAlt);
 });
-
+//Enter keystroke closes all editboxes and saves changes 
+$("#editLink input, #editImage input, #editImageLink input").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#editLink, #editImage, #editImageLink").fadeOut(200);
+	var imgSrc = $("#imageSrc").val();
+	var imgAlt = $("#imageAlt").val();
+	$(imgChange).attr('src', imgSrc).attr('alt', imgAlt);
+    }
+});
 
 
 //Edit image src and alt text on click (linked image)
@@ -284,6 +292,17 @@ $("#linkedimageEditDone").click(function () {
     var linkedimgLink = $("#linkedimageLink").val();
     $(linkedimgChangeImg).attr('src', linkedimgSrc).attr('alt', linkedimgAlt);
     $(linkedimgChange).attr('href', linkedimgLink);
+});
+//Enter keystroke closes all editboxes and saves changes 
+$("#editLink input, #editImage input, #editImageLink input").keyup(function(event){
+    if(event.keyCode == 13){
+	var linkedimgSrc = $("#linkedimageSrc").val();
+	var linkedimgAlt = $("#linkedimageAlt").val();
+	var linkedimgLink = $("#linkedimageLink").val();
+	$(linkedimgChangeImg).attr('src', linkedimgSrc).attr('alt', linkedimgAlt);
+	$(linkedimgChange).attr('href', linkedimgLink);
+        $("#editLink, #editImage, #editImageLink").fadeOut(200);
+    }
 });
 
 

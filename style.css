@@ -347,8 +347,9 @@ button:focus {
     top: 100;
     left: 0;
     z-index: 40;
+    border-radius: 10px;
 }
-#linkEditDone, #imageEditDone {
+#linkEditDone, #imageEditDone, #linkedimageEditDone {
     margin-top: 10px;
     margin-left: 45px;
     padding: 5px;
@@ -359,11 +360,25 @@ button:focus {
     display: block;
     background: orange;
 }
-#editLink input, #editImage input {
+#editLink input, #editImage input, #editImageLink input {
     width: 200px;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
+    height: 30px;
+}
+#editImageLink #linkedimageAlt,  #editImageLink #linkedimageSrc  {
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    height: 30px;
+}
+#editImageLink #linkedimageLink {
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 14px;
     height: 30px;
 }
 #editLink input:focus, #editImage input:focus {
@@ -435,10 +450,13 @@ button:focus {
     background: #3d3d3d;
     opacity: .7;
 }
-/*Email Styles*/
+/*Email Styles Preview styles (prevents unwanted behavior not present in email clients)*/
 table a {
     text-decoration: underline;
 }
+table tr td {
+    line-height: 0 !important;
+	    }
 sup {
     font-size: 60%;
     line-height: 1;
