@@ -63,6 +63,7 @@ h6 {font-size: 1.2dem;}
 
 /* Orange gradient bar below nav */
 #navOrange {
+    z-index: 30;
     height: 5px;
     width: 100%;
     position: absolute;
@@ -175,6 +176,8 @@ section#two h5 {
     width: 100%;
     overflow-y: hidden;
 }
+
+/*Nav on builder page*/
 nav#builderNav {
     width: 100%;
     margin: 0;
@@ -188,9 +191,28 @@ img#icon {
     margin-left: 1em;
     padding-left: .5em;
     padding-right: .5em;
+    position: absolute;
 }
 img#icon:hover {  
     background: #ffffff;
+}
+#download {
+    display: inline;
+    font-size: 1em;
+    line-height: 3.1em;
+    height: 3.1em;
+    z-index: 20;
+    color: #fff;
+    position: absolute;
+    background: #111;
+    left: 100px;
+    cursor: pointer;
+    padding: 0 10px 0 10px;
+    border-right: 1px orange solid;
+    border-left: 1px orange solid;
+}
+#download:hover {
+    background: #333;
 }
 
 /* THE EMAIL BUILDER TOOL */

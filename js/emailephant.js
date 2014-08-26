@@ -23,6 +23,37 @@ window.onload = function() {
 };
 
 
+/*Download the email.html (all content wrapped in #emailCode) and insert doctype, meta, and html tags*/
+function downloadInnerHtml(filename, elId, mimeType) {
+    //Turn off contenteditable
+    $('td.editArea').attr('contenteditable', false);
+    var elHtml = document.getElementById(elId).innerHTML;
+ var fullHtml = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"X-UA-Compatible\" content=\"IE=8\" /><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><meta name=\"viewport\" content=\"width=device-width\" /></head><body style=\"width: 100%; height: 100%; font-family: \'Arial\', Helvetica, sans-serif; -webkit-text-size-adjust: none; background: #e5e5e5; margin: 0; padding: 0;\" bgcolor=\"#E5E5E5\">" + elHtml + "</body></html>";
+
+    mimeType = mimeType || 'text/html';
+    var link = document.createElement('a');
+
+    mimeType = mimeType || 'text/html';
+    link.setAttribute('download', filename);
+    link.setAttribute('href', 'data:' + mimeType  +  ';charset=utf-8,' + encodeURIComponent(fullHtml));
+    link.click(); 
+}
+//File name for downloaded email
+    var fileName =  'email.html'; 
+
+//Download the file on mousedown 
+$('#download').mousedown(function(){
+    downloadInnerHtml(fileName, 'emailCode','text/html');
+});
+
+//Turn editarea back on in email builder on mouse up
+$('*').mouseup(function(){
+    $('td.editArea').attr('contenteditable', true);
+});
+
+
+/* The text editor */
+
 //Contenteditable button commands
 function bold() {
     document.execCommand('StyleWithCSS', false, false);
@@ -180,6 +211,8 @@ function font40() {
         }
     }
 }
+
+//Undo and Redo (changes made in contentarea only)
 function undo() {
     document.execCommand("undo",false, false);
 }
@@ -362,8 +395,6 @@ $("#symbolWrap").click(function() {
     $('#colorChoiceWrap').removeClass('colorChoiceActive');
     return false;
 });
-
-
 
 
 //Prevent email links from working in editor
