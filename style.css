@@ -200,11 +200,11 @@ img#icon:hover {
     display: inline;
     font-size: 1em;
     line-height: 3.1em;
-    height: 3.1em;
+    height: 3em;
     z-index: 20;
     color: #fff;
     position: absolute;
-    background: #111;
+    background: #444;
     left: 100px;
     cursor: pointer;
     padding: 0 10px 0 10px;
@@ -212,7 +212,7 @@ img#icon:hover {
     border-left: 1px orange solid;
 }
 #download:hover {
-    background: #333;
+    background: #111;
 }
 
 /* THE EMAIL BUILDER TOOL */
@@ -241,10 +241,12 @@ img#icon:hover {
     background: #333333;
     border: 2px solid #EB9532;
     border-left: 0;
-    overflow: auto;
     padding: .7em;
     position: fixed;
     right: 0;
+    overflow-x: hidden; 
+    overflow-y: auto;
+    margin: 0 auto;
 }
 @media only screen and (max-width: 980px){
     #templateChoice, #emailPreview {
@@ -257,6 +259,68 @@ img#icon:hover {
     #emailPreview {
 	float: left;
     }
+}
+.gallery ul{
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 200%;
+    overflow-x: hidden;
+    white-space:nowrap;
+}
+li.templateSlide {
+    width: 50%;
+    list-style: none;
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+/*
+    For clearfix information visit:
+    http://nicolasgallagher.com/micro-clearfix-hack/
+*/
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1;}
+.templateCategory {
+    z-index: 50;
+    width: 100%;
+    margin: 0;
+    height: 60px;
+    display: inline-block;
+    position: relative;
+}
+.templateCategory .templateCatWrap {
+    display: inline-block;
+    width: 100%;
+    float: left;
+}
+.templateCatWrap h3.templateCatChoice {
+    text-align: center;
+    color: white;
+    font-size: 1.5em;
+    line-height: 60px;
+}
+.templateCategory h3.templateCatLeft {
+    position: absolute;
+    display: inline-block;
+    color: white;
+    left: 10px;
+    float: left;
+    cursor: pointer;
+    color: orange;
+}
+.templateCategory h3.templateCatRight {
+    position: absolute;
+    color: white;
+    right: 10px;
+    display: inline-block;
+    cursor: pointer;
+    color: orange;
+}
+h3.templateCatRight:hover, h3.templateCatLeft:hover {
+    color: white;
 }
 .template {
     height: 30%;
@@ -297,6 +361,7 @@ div font{
     -ms-transition: all .5s ease;
     -o-transition: all .5s ease;
     transition: all .5s ease;
+    height: 20px;
 }
 .editArea:hover {
     opacity: .5 !important;
@@ -338,6 +403,7 @@ div font{
     outline: 0 solid transparent;
 }
 #editor {
+    z-index: 50;
     width: 0;
     position: fixed;
     top: 55px;
@@ -478,7 +544,7 @@ table a {
 }
 table tr td {
     line-height: 0 !important;
-	    }
+}
 sup {
     font-size: 60%;
     line-height: 1;

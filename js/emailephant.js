@@ -402,3 +402,18 @@ $('td a').click(function (e) {
     e.preventDefault();
 });
 
+
+//Template Choice Slider
+var $slide = $("#start");
+$( ".templateCatRight" ).click(function() {
+    $slide = $slide.next();
+    $('.templateSlide').fadeOut(0);
+    $slide.fadeIn(1000);
+});
+$( ".templateCatLeft" ).click(function() {
+    $slide = $slide.prev();
+    $('.templateSlide').fadeOut(0);
+    $slide.fadeIn(1000);
+});
+
+
