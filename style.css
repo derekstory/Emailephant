@@ -363,13 +363,18 @@ div font{
     transition: all .5s ease;
     height: 20px;
 }
-.editArea:hover {
-    opacity: .5 !important;
+.templateSection {  
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+}
+.templateSection:hover {
     cursor: pointer !important;
 }
 .editArea:focus {
     opacity: 1 !important;
-    outline: 2px solid orange;
+    outline: none;
 }
 .editArea:focus, .editArea:focus font:hover {
     cursor: text !important;
@@ -552,4 +557,26 @@ sup {
 }
 font:hover {
     cursor: pointer !important;
+}
+
+
+.custom-menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    background: orange;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    color: #333;
+    border-radius: 5px;
+    color: white;
+}
+.custom-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+.custom-menu li:hover {
+    background-color: #333;
 }

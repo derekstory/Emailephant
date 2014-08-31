@@ -70,27 +70,34 @@ function underline() {
 }
 //Links
 function linkblack() {
-    document.execCommand('CreateLink', false, 'http://');
-    document.execCommand("foreColor",false, '#000000');
+    document.execCommand('CreateLink', true, 'http://');
+    var black = window.getSelection().focusNode.parentNode;
+    $(black).css('color', '#000000');
 }
 function linkblue() {
     document.execCommand('CreateLink', false, 'http://');
-    document.execCommand("foreColor",false, '#00365b');
+    var blue = window.getSelection().focusNode.parentNode;
+    $(blue).css('color', '#00365b');
 }
 function linkwhite() {
     document.execCommand('CreateLink', false, 'http://');
-    document.execCommand("foreColor",false, '#ffffff');
+    var white = window.getSelection().focusNode.parentNode;
+    $(white).css('color', '#ffffff');
 }
 function linkgold() {
     document.execCommand('CreateLink', false, 'http://');
-    document.execCommand("foreColor",false, '#C1A04D');
+    var gold = window.getSelection().focusNode.parentNode;
+    $(gold).css('color', '#C1A04D');
 }
 function linkgrey() {
     document.execCommand('CreateLink', false, 'http://');
-    document.execCommand("foreColor",false, '#3d3d3d');
+    var grey = window.getSelection().focusNode.parentNode;
+    $(grey).css('color', '#3d3d3d');
 }
 function superscript() {
     document.execCommand('superscript', false, null);
+    var superscript = window.getSelection().focusNode.parentNode;
+    $(superscript).css('font-size', '60%').css('line-height','.7');
 }
 function leftalign() {
     document.execCommand('justifyleft', false, null);
@@ -243,7 +250,8 @@ $(function() {
     $("#editLink").hide();
     $(".editArea").bind('dblclick', function(e) {
         var $node = $(getSelectionStartNode());
-        if ($node.is('a, a font')) {
+        if ($node.is('a')) {
+	    
             $("#editLink").css({
 		top: $node.offset().top - $('#editLink').height() - 5,
 		left: $node.offset().left
@@ -264,6 +272,9 @@ $(function() {
 $("#linkEditDone").click(function() { 
     $("#editLink").fadeOut(200);
 });
+
+
+
 
 
 
@@ -408,12 +419,78 @@ var $slide = $("#start");
 $( ".templateCatRight" ).click(function() {
     $slide = $slide.next();
     $('.templateSlide').fadeOut(0);
-    $slide.fadeIn(1000);
+    $slide.fadeIn(700);
 });
 $( ".templateCatLeft" ).click(function() {
     $slide = $slide.prev();
     $('.templateSlide').fadeOut(0);
-    $slide.fadeIn(1000);
+    $slide.fadeIn(700);
 });
 
 
+
+//Custom Menu when right click on section in builder
+// Trigger action when the contexmenu is about to be shown
+$(".templateSection").contextmenu(function (event) {
+    var thisTemplate = this;
+    // Avoid the real one
+    event.preventDefault();
+
+    // Show contextmenu
+    $(".custom-menu").toggle(100).
+
+
+    // In the right position (the mouse)
+    css({
+	top: event.pageY + "px",
+	left: event.pageX + "px"
+    });
+    $(".editArea").css('outline', 'none')
+    //Delete section menu button
+    $("#menuDelete").click(function () {
+	$(thisTemplate).remove();
+	$(".custom-menu").hide(100);
+    });
+
+    //Move sections up and down
+    function firstAndLast(emailContainer) {
+	firstAndLast($('#emailContainer'));
+    }
+
+    $('.menuUp, .menuDown').click(function (e) {
+	e.preventDefault();
+
+	var parent = $(thisTemplate).closest('.templateSection'),
+	grandparent = $(thisTemplate).closest('#emailContainer');
+
+	if ($(this).hasClass('menuUp')) {
+	    parent.insertBefore(parent.prev('.templateSection'));
+	    firstAndLast(grandparent);
+
+	} else if ($(this).hasClass('menuDown')) {
+	    parent.insertAfter(parent.next('.templateSection'));
+	    thisTemplate.clearQueue();
+	}
+    });
+
+    //Fade Out template section
+    $(thisTemplate).css('opacity', '.2');
+
+
+    // Hide menu if the document is clicked somewhere
+    $(document).bind("mousedown", function (e) {
+	//left mouse down
+	switch (e.which) {
+	case 1:
+	    // If the clicked element is not the menu
+	    if (!$(e.target).parents(".custom-menu").length > 0) {
+
+		// Hide it
+		$(".custom-menu").hide(100);
+		$(".templateSection").css('opacity', '1');
+		$(thisTemplate).removeData();
+	    }
+	}
+
+    });
+});
