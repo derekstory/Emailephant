@@ -438,6 +438,7 @@ $(function () {
             top: event.pageY + "px",
             left: event.pageX + "px"
         }).fadeIn(200);
+	$(thisTemplate).fadeTo(20, .3).css('border', '3px dashed orange');
     });
 });
 
@@ -465,6 +466,7 @@ $(document).mousedown(function (e) {
         // If the clicked element is not the menu
         if (!$(e.target).parents('.custom-menu').length > 0) {
             $(".custom-menu").hide(100);
+	    $(thisTemplate).fadeTo(20, 1).css('border', 'none');
         }
     }
 });
