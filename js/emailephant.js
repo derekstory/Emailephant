@@ -274,12 +274,7 @@ $("#linkEditDone").click(function() {
 });
 
 
-
-
-
-
 //Edit image src and alt text on click (non-linked image)
-var imgChange;
 $(function () {
     $("#editImage").hide();
     $("td > img").dblclick(function () {
@@ -298,6 +293,7 @@ $("#imageEditDone").click(function () {
     var imgAlt = $("#imageAlt").val();
     $(imgChange).attr('src', imgSrc).attr('alt', imgAlt);
 });
+
 //Enter keystroke closes all editboxes and saves changes 
 $("#editLink input, #editImage input, #editImageLink input").keyup(function(event){
     if(event.keyCode == 13){
@@ -310,7 +306,6 @@ $("#editLink input, #editImage input, #editImageLink input").keyup(function(even
 
 
 //Edit image src and alt text on click (linked image)
-var linkedimgChange;
 $(function () {
     $("#editImageLink").hide();
     $("a").dblclick(function () {
@@ -431,66 +426,45 @@ $( ".templateCatLeft" ).click(function() {
 
 //Custom Menu when right click on section in builder
 // Trigger action when the contexmenu is about to be shown
-$(".templateSection").contextmenu(function (event) {
-    var thisTemplate = this;
-    // Avoid the real one
-    event.preventDefault();
-
-    // Show contextmenu
-    $(".custom-menu").toggle(100).
 
 
-    // In the right position (the mouse)
-    css({
-	top: event.pageY + "px",
-	left: event.pageX + "px"
+//Replace default context menu on right click
+$(function () {
+    $('.custom-menu').hide();
+    $(".templateSection").contextmenu(function (event) {
+        event.preventDefault();
+        thisTemplate = this;
+        $(".custom-menu").css({
+            top: event.pageY + "px",
+            left: event.pageX + "px"
+        }).fadeIn(200);
     });
-    $(".editArea").css('outline', 'none')
-    //Delete section menu button
-    $("#menuDelete").click(function () {
-	$(thisTemplate).remove();
-	$(".custom-menu").hide(100);
-    });
+});
 
-    //Move sections up and down
-    function firstAndLast(emailContainer) {
-	firstAndLast($('#emailContainer'));
+//Delete Section
+$("#menuDelete").click(function () {
+    $(thisTemplate).remove();
+    $(".custom-menu").hide(100);
+});
+
+//Move sections up and odwn
+$('.menuUp, .menuDown').click(function () {
+    var parent = $(thisTemplate).closest('.templateSection');
+    if ($(this).hasClass('menuUp')) {
+        parent.insertBefore(parent.prev('.templateSection'));
+    } else if ($(this).hasClass('menuDown')) {
+        parent.insertAfter(parent.next('.templateSection'));
     }
+});
 
-    $('.menuUp, .menuDown').click(function (e) {
-	e.preventDefault();
-
-	var parent = $(thisTemplate).closest('.templateSection'),
-	grandparent = $(thisTemplate).closest('#emailContainer');
-
-	if ($(this).hasClass('menuUp')) {
-	    parent.insertBefore(parent.prev('.templateSection'));
-	    firstAndLast(grandparent);
-
-	} else if ($(this).hasClass('menuDown')) {
-	    parent.insertAfter(parent.next('.templateSection'));
-	    thisTemplate.clearQueue();
-	}
-    });
-
-    //Fade Out template section
-    $(thisTemplate).css('opacity', '.2');
-
-
-    // Hide menu if the document is clicked somewhere
-    $(document).bind("mousedown", function (e) {
-	//left mouse down
-	switch (e.which) {
-	case 1:
-	    // If the clicked element is not the menu
-	    if (!$(e.target).parents(".custom-menu").length > 0) {
-
-		// Hide it
-		$(".custom-menu").hide(100);
-		$(".templateSection").css('opacity', '1');
-		$(thisTemplate).removeData();
-	    }
-	}
-
-    });
+//Close context menu when clicking outside of menu
+$(document).mousedown(function (e) {
+    //left mouse down
+    switch (e.which) {
+    case 1:
+        // If the clicked element is not the menu
+        if (!$(e.target).parents('.custom-menu').length > 0) {
+            $(".custom-menu").hide(100);
+        }
+    }
 });
