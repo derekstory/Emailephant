@@ -409,24 +409,6 @@ $('td a').click(function (e) {
 });
 
 
-//Template Choice Slider
-var $slide = $("#start");
-$( ".templateCatRight" ).click(function() {
-    $slide = $slide.next();
-    $('.templateSlide').fadeOut(0);
-    $slide.fadeIn(700);
-});
-$( ".templateCatLeft" ).click(function() {
-    $slide = $slide.prev();
-    $('.templateSlide').fadeOut(0);
-    $slide.fadeIn(700);
-});
-
-
-
-//Custom Menu when right click on section in builder
-// Trigger action when the contexmenu is about to be shown
-
 
 //Replace default context menu on right click
 $(function () {
@@ -438,17 +420,29 @@ $(function () {
             top: event.pageY + "px",
             left: event.pageX + "px"
         }).fadeIn(200);
+	$('.templateSection').fadeTo(20, 1).css('border', 'none');
 	$(thisTemplate).fadeTo(20, .3).css('border', '3px dashed orange');
+	//hide delete confirm options if open
+	$(".menuConfirm, .menuCancel").removeClass('deleteConfirm').addClass('deleteConfirmOption');
+	//remove border around focused edit area blurring it
+	$('.editArea').blur();
     });
 });
 
-//Delete Section
+
+//Delete Section -- require confirmation to prevent unwanted deletes
 $("#menuDelete").click(function () {
-    $(thisTemplate).remove();
+    $(".menuConfirm, .menuCancel").removeClass('deleteConfirmOption').addClass('deleteConfirm');
+});
+$('.menuConfirm, .menuCancel').click(function() {
     $(".custom-menu").hide(100);
+    $(".menuConfirm, .menuCancel").removeClass('deleteConfirm').addClass('deleteConfirmOption');
+});
+$('.menuConfirm').click (function() {
+    $(thisTemplate).remove();
 });
 
-//Move sections up and odwn
+//Move sections up and down
 $('.menuUp, .menuDown').click(function () {
     var parent = $(thisTemplate).closest('.templateSection');
     if ($(this).hasClass('menuUp')) {
@@ -467,6 +461,22 @@ $(document).mousedown(function (e) {
         if (!$(e.target).parents('.custom-menu').length > 0) {
             $(".custom-menu").hide(100);
 	    $(thisTemplate).fadeTo(20, 1).css('border', 'none');
+	    //hide delete confirm options if open
+	    $(".menuConfirm, .menuCancel").removeClass('deleteConfirm').addClass('deleteConfirmOption');
         }
     }
+});
+
+
+//Template Choice Slider
+var $slide = $("#start");
+$( ".templateCatRight" ).click(function() {
+    $slide = $slide.next();
+    $('.templateSlide').fadeOut(0);
+    $slide.fadeIn(0);
+});
+$( ".templateCatLeft" ).click(function() {
+    $slide = $slide.prev();
+    $('.templateSlide').fadeOut(0);
+    $slide.fadeIn(0);
 });

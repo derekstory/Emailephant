@@ -61,6 +61,15 @@ h6 {font-size: 1.2dem;}
     transition: all 1s ease; 
 }
 
+   /*Prevent the template selector from being highlighted when navigating*/
+.noHighlight{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 /* Orange gradient bar below nav */
 #navOrange {
     z-index: 30;
@@ -362,19 +371,22 @@ div font{
     -o-transition: all .5s ease;
     transition: all .5s ease;
     height: 20px;
+
+
 }
 .templateSection {  
     -webkit-transition: all .5s ease;
     -moz-transition: all .5s ease;
     -ms-transition: all .5s ease;
     -o-transition: all .5s ease;
+
 }
 .templateSection:hover {
     cursor: pointer !important;
 }
 .editArea:focus {
     opacity: 1 !important;
-    outline: none;
+    outline: 1px solid orange;
 }
 .editArea:focus, .editArea:focus font:hover {
     cursor: text !important;
@@ -579,4 +591,19 @@ font:hover {
 }
 .custom-menu li:hover {
     background-color: #333;
+}
+.deleteConfirmOption {
+    height: 0 !important;
+    overflow: hidden;
+    padding: 0 !important;
+}
+.confirmActive {
+    height: 400px;
+    padding: 8px 12px;
+}
+.menuCancel {
+    background: #aaaaaa;
+}
+.menuConfirm {
+    background: #D64541;
 }
