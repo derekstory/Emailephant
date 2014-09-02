@@ -1,3 +1,10 @@
+//Choose the template -- Load file from template folder
+$(document).ready(function(){
+    $(".template").click(function(){
+	var templateLocation = $(this).children('.templateLocation').val();
+	$("#loadTemplate").load(templateLocation);
+    });
+});
 //Promt users to confirm if they want to leave page
 var confirmOnPageExit = function (e) 
 {
@@ -28,7 +35,7 @@ function downloadInnerHtml(filename, elId, mimeType) {
     //Turn off contenteditable
     $('td.editArea').attr('contenteditable', false);
     var elHtml = document.getElementById(elId).innerHTML;
- var fullHtml = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"X-UA-Compatible\" content=\"IE=8\" /><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><meta name=\"viewport\" content=\"width=device-width\" /></head><body style=\"width: 100%; height: 100%; font-family: \'Arial\', Helvetica, sans-serif; -webkit-text-size-adjust: none; background: #e5e5e5; margin: 0; padding: 0;\" bgcolor=\"#E5E5E5\">" + elHtml + "</body></html>";
+    var fullHtml = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"X-UA-Compatible\" content=\"IE=8\" /><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><meta name=\"viewport\" content=\"width=device-width\" /></head><body style=\"width: 100%; height: 100%; font-family: \'Arial\', Helvetica, sans-serif; -webkit-text-size-adjust: none; background: #e5e5e5; margin: 0; padding: 0;\" bgcolor=\"#E5E5E5\">" + elHtml + "</body></html>";
 
     mimeType = mimeType || 'text/html';
     var link = document.createElement('a');
@@ -39,7 +46,7 @@ function downloadInnerHtml(filename, elId, mimeType) {
     link.click(); 
 }
 //File name for downloaded email
-    var fileName =  'email.html'; 
+var fileName =  'email.html'; 
 
 //Download the file on mousedown 
 $('#download').mousedown(function(){
@@ -480,3 +487,4 @@ $( ".templateCatLeft" ).click(function() {
     $('.templateSlide').fadeOut(0);
     $slide.fadeIn(0);
 });
+

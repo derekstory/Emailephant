@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="js/vendor/modernizr.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Advent+Pro:200,700,400' rel='stylesheet' type='text/css' />
   </head>
   <body>
@@ -131,7 +132,7 @@
 
 		    <table bgcolor="#BEBEBE" style="width: 560px; text-align: inherit; border-spacing: 0; border-collapse: collapse; margin: 0 auto;" align="center">
 		      <tr>
-			<td style="padding: 1px;">
+			<td style="padding: 0px;">
 			  <table class="container" style="width: 560px; text-align: inherit; border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
 			    <tr>
 			      <td class="bgwhite" style="background: #ffffff; padding: 0px;" bgcolor="#FFFFFF">
@@ -332,6 +333,7 @@
 				      </td>
 				    </tr>
 				  </table>
+
 				  <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;" class="templateSection">
 				    <tr>
 				      <td class="editArea" style="text-align: left; font-size: 11px; line-height: 13px; width: 50%; vertical-align: bottom; padding: 0px 0px 0px 15px;" align="left" valign="bottom" contenteditable="true">
@@ -342,11 +344,7 @@
 				      </td>
 				    </tr>
 				  </table>
-				  <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;">
-				    <tr>
-				      <td class="col-10" height="10" style="width: 100%; padding: 0px;"></td>
-				    </tr>
-				  </table>
+				  <table width="100%" style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;"  class="templateSection" id="loadTemplate"></table>
 				</center>
 			      </td>
 			    </tr>
@@ -383,12 +381,14 @@
 	      
 	      <div class="template">
 		<img src="http://zurb.com/ink/images/templates/basic.jpg" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Title goes here</div>
+		<div class="templateTitle transitionFast">Header 1</div>
+		<input class="templateLocation" type="hidden" value="../templates/test2.html">
 	      </div>
 
 	      <div class="template">
 		<img src="http://zurb.com/ink/images/templates/basic.jpg" alt="" width="100%" />
 		<div class="templateTitle transitionFast">Title goes here</div>
+		<input class="templateLocation" type="hidden" value="../templates/test2.html">
 	      </div>
 
 	      <div class="template">
@@ -485,7 +485,8 @@
       </div>
 
     </div>
-    <script src="js/vendor/jquery.js"></script>
+
+
     <script src="js/foundation.min.js"></script>
     <script src="js/emailephant.js"></script>
     <script>
