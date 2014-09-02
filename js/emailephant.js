@@ -1,10 +1,4 @@
-//Choose the template -- Load file from template folder
-$(document).ready(function(){
-    $(".template").click(function(){
-	var templateLocation = $(this).children('.templateLocation').val();
-	$("#loadTemplate").load(templateLocation);
-    });
-});
+
 //Promt users to confirm if they want to leave page
 var confirmOnPageExit = function (e) 
 {
@@ -235,13 +229,13 @@ function redo() {
 }
 
 //Show & Hide editor tools
-$('.editArea').click(function(){
+
+$(document).on("click", ".editArea", function(){
     $('#editor').css('width', '75px');
 });
 $('.closeEdit').click(function(){
     $('#editor').css('width', '0');    
 });
-
 
 
 //Edit a href on click
@@ -255,7 +249,7 @@ function getSelectionStartNode(){
 
 $(function() {
     $("#editLink").hide();
-    $(".editArea").bind('dblclick', function(e) {
+    $(document).on("dblclick", ".editArea", function(e){
         var $node = $(getSelectionStartNode());
         if ($node.is('a')) {
 	    
@@ -284,7 +278,7 @@ $("#linkEditDone").click(function() {
 //Edit image src and alt text on click (non-linked image)
 $(function () {
     $("#editImage").hide();
-    $("td > img").dblclick(function () {
+    $(document).on("dblclick", "td > img", function(){
         imgChange = this;
         $('#imageAlt').val($(imgChange).attr('alt'));
         $('#imageSrc').val($(imgChange).attr('src'));
@@ -315,7 +309,8 @@ $("#editLink input, #editImage input, #editImageLink input").keyup(function(even
 //Edit image src and alt text on click (linked image)
 $(function () {
     $("#editImageLink").hide();
-    $("a").dblclick(function () {
+    $(document).on("dblclick", "a", function(e){
+	e.preventDefault();
         linkedimgChange = this;
         linkedimgChangeImg = $('img', this);
         if ($(linkedimgChange).children('img').length > 0) {
@@ -411,7 +406,7 @@ $("#symbolWrap").click(function() {
 
 
 //Prevent email links from working in editor
-$('td a').click(function (e) {
+$(document).on("click", "td a", function(e){
     e.preventDefault();
 });
 
@@ -420,7 +415,7 @@ $('td a').click(function (e) {
 //Replace default context menu on right click
 $(function () {
     $('.custom-menu').hide();
-    $(".templateSection").contextmenu(function (event) {
+    $(document).on("contextmenu", ".templateSection", function(event){
         event.preventDefault();
         thisTemplate = this;
         $(".custom-menu").css({
@@ -474,6 +469,18 @@ $(document).mousedown(function (e) {
     }
 });
 
+//Choose the template -- Load file from template folder
+$(document).ready(function(){
+    $(".template").on("click", function(){
+	//Get location of file
+	var templateLocation = $(this).children('.templateLocation').val();
+	$.get(templateLocation, function(response) {
+	    var loadTemplate =  response;
+	    $("#loadTemplate").replaceWith(loadTemplate);
+	});
+
+    });
+});
 
 //Template Choice Slider
 var $slide = $("#start");
