@@ -339,11 +339,11 @@ $("#linkedimageEditDone").click(function () {
 $("#editImageLink input").keyup(function(event){
     if(event.keyCode == 13){
         $("#editLink, #editImage, #editImageLink").fadeOut(200);
- var linkedimgSrc = $("#linkedimageSrc").val();
-    var linkedimgAlt = $("#linkedimageAlt").val();
-    var linkedimgLink = $("#linkedimageLink").val();
-    $(linkedimgChangeImg).attr('src', linkedimgSrc).attr('alt', linkedimgAlt);
-    $(linkedimgChange).attr('href', linkedimgLink);
+	var linkedimgSrc = $("#linkedimageSrc").val();
+	var linkedimgAlt = $("#linkedimageAlt").val();
+	var linkedimgLink = $("#linkedimageLink").val();
+	$(linkedimgChangeImg).attr('src', linkedimgSrc).attr('alt', linkedimgAlt);
+	$(linkedimgChange).attr('href', linkedimgLink);
 
     }
 });
@@ -500,6 +500,9 @@ $( ".templateCatLeft" ).click(function() {
 
 //Mobile Preview -- Iframe Injection
 $('#mobileShow').click(function () {
+    //open iframe links in new tab
+    $('a').attr('target','_blank');
+
     $('#mobilePrev').fadeIn(300);
     $('td.editArea').attr('contenteditable', false);
 
@@ -514,18 +517,18 @@ $('#mobileShow').click(function () {
     }
     doc.open();
     doc.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"   \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
-
+    
     doc.writeln(content);
     doc.close();
 
 
 });
 
-//Show previews and turn off contenteditable
+//Show mobile preview
 $('#mobileShow').click(function () {
     $('#mobilePrev').fadeIn(300);
+    //turn of contenteditable
     $('td.editArea').attr('contenteditable', false);
-
     var $iframe = $('iframe#desktop');
     var iframe = $iframe[0];
     var doc = iframe.document;
@@ -537,7 +540,6 @@ $('#mobileShow').click(function () {
     }
     doc.open();
     doc.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"   \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
-
     doc.writeln(content);
     doc.close();
 });
@@ -546,10 +548,14 @@ $('#mobileShow').click(function () {
 $('#mobileClose').click(function () {
     $('#insert').attr('contenteditable', true);
     $('#mobilePrev').fadeOut(300);
+    //Stop links from opening in new tab
+    $('a').attr('target','');
 });
 //Close previews on escape key
 $(document).keydown(function(e) {
     if (e.keyCode == 27) {
-    $('#mobilePrev').fadeOut(300);
+	$('#mobilePrev').fadeOut(300);
+	//Stop links from opening in new tab
+	$('a').attr('target','');
     }
 });
