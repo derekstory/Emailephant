@@ -495,3 +495,30 @@ $( ".templateCatLeft" ).click(function() {
     $slide.fadeIn(0);
 });
 
+
+//Mobile Preview -- Iframe Injection
+$('#mobileShow').click(function () {
+    $('#mobilePrev').fadeIn(300);
+    $('td.editArea').attr('contenteditable', false);
+
+    var $iframe = $('iframe');
+    var iframe = $iframe[0];
+    var doc = iframe.document;
+    var content = $('#emailCode').html();
+    if (iframe.contentDocument) {
+        doc = iframe.contentDocument;
+    } else if (iframe.contentWindow) {
+        doc = iframe.contentWindow.document;
+    }
+    doc.open();
+    doc.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"   \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
+
+    doc.writeln(content);
+    doc.close();
+
+
+});
+$('#mobileClose').click(function () {
+    $('#insert').attr('contenteditable', true);
+    $('#mobilePrev').fadeOut(300);
+});

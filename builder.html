@@ -1,12 +1,12 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emailephant: Free Email Builder</title>
     <meta name="description" content="Emailephant is the most flexible email builder available. Quickly build emails using modules through our templates or your own custom code." />
     <link href="img/favicon.png" rel="shortcut icon" />
-    <link rel="stylesheet" href="css/foundation.css" />
+
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="js/vendor/modernizr.js"></script>
@@ -15,6 +15,12 @@
   </head>
   <body>
     
+    <div id="mobilePrev">
+      <button id="mobileClose">Close</button>
+      <iframe>
+      </iframe>
+    </div>
+
     <ul class="custom-menu noHighlight">
       <li id="menuUp" class="menuUp">Section Up</li>
       <li id="menuDown" class="menuDown">Section Down</li>
@@ -30,7 +36,10 @@
 	  <img src="img/icon.png" alt="Emailephant" id="icon" class="transitionFast" />
 	</a>
 	<span>
-	  <h3 id="download" class="transitionFast">Download</h3>
+	  <h3 id="download" class="transitionFast advent">Download</h3>
+	</span>
+	<span>
+	  <h3 id="mobileShow" class="transitionFast advent">Mobile Preview</h3>
 	</span>
 	<div id="navOrange"></div>
       </nav>
@@ -108,260 +117,955 @@
 	  </div>
 
 	  <div id="emailCode">
+	    
+	    <style>
+	      /**********************************************
+	      * Ink v1.0.5 - Copyright 2013 ZURB Inc        *
+	      **********************************************/
 
-	    <table class="body bggrey" style="width: 100%; min-height: 100%; font-family: 'Arial', Helvetica, sans-serif; -webkit-text-size-adjust: none; border-spacing: 0; border-collapse: collapse; background: #e5e5e5; margin: 0; padding: 0;" bgcolor="#E5E5E5" id="emailContainer">
+	      /* Client-specific Styles & Reset */
+
+
+
+	      body { 
+	      width:100% !important; 
+	      height: 100% !important;
+	      min-width: 100%;
+	      -webkit-text-size-adjust:100%; 
+	      -ms-text-size-adjust:100%; 
+	      margin:0; 
+	      padding:0;
+	      background: #e5e5e5;
+	      }
+	      td { 
+	      word-break: break-word;
+	      -webkit-hyphens: auto;
+	      -moz-hyphens: auto;
+	      hyphens: auto;
+	      border-collapse: collapse !important; 
+	      }
+
+	      table, tr, td {
+	      padding: 0;
+	      vertical-align: top;
+	      text-align: left;
+	      }
+
+	      /* Responsive Grid */
+
+	      table.body {
+	      height: 100% !important;
+	      width: 100%;
+	      background: #e5e5e5;
+	      }
+
+	      table.container {
+	      width: 580px;
+	      margin: 0 auto;
+	      text-align: inherit;
+	      }
+
+	      table.row { 
+	      width: 100%;
+	      position: relative;
+	      }
+
+	      table.container table.row {
+	      display: block;
+	      }
+
+	      td.wrapper {
+	      position: relative;
+	      }
+
+	      table.columns,
+	      table.column {
+	      margin: 0 auto;
+	      }
+
+	      table.columns td,
+	      table.column td {
+	      padding: 0px 0px 0px; 
+	      }
+
+
+
+	      
+
+	      table.columns td.sub-columns,
+	      table.column td.sub-columns,
+	      table.columns td.sub-column,
+	      table.column td.sub-column {
+	      padding-right: 10px;
+	      }
+
+	      td.sub-column, td.sub-columns {
+	      min-width: 0px;
+	      }
+
+	      table.row td.last,
+	      table.container td.last {
+	      padding-right: 10px;
+	      }
+
+	      table.one { width: 30px; }
+	      table.two { width: 80px; }
+	      table.three { width: 130px; }
+	      table.four { width: 180px; }
+	      table.five { width: 230px; }
+	      table.six { width: 280px; }
+	      table.seven { width: 330px; }
+	      table.eight { width: 380px; }
+	      table.nine { width: 430px; }
+	      table.ten { width: 480px; }
+	      table.eleven { width: 530px; }
+	      table.twelve { width: 580px; }
+
+
+	      .body .columns td.one,
+	      .body .column td.one { width: 8.333333%; }
+	      .body .columns td.two,
+	      .body .column td.two { width: 16.666666%; }
+	      .body .columns td.three,
+	      .body .column td.three { width: 25%; }
+	      .body .columns td.four,
+	      .body .column td.four { width: 33.333333%; }
+	      .body .columns td.five,
+	      .body .column td.five { width: 41.666666%; }
+	      .body .columns td.six,
+	      .body .column td.six { width: 50%; }
+	      .body .columns td.seven,
+	      .body .column td.seven { width: 58.333333%; }
+	      .body .columns td.eight,
+	      .body .column td.eight { width: 66.666666%; }
+	      .body .columns td.nine,
+	      .body .column td.nine { width: 75%; }
+	      .body .columns td.ten,
+	      .body .column td.ten { width: 83.333333%; }
+	      .body .columns td.eleven,
+	      .body .column td.eleven { width: 91.666666%; }
+	      .body .columns td.twelve,
+	      .body .column td.twelve { width: 100%; }
+
+	      td.expander {
+	      visibility: hidden;
+	      width: 0px;
+	      padding: 0 !important;
+	      }
+
+	      /*  Media Queries */
+
+	      @media only screen and (max-width: 600px) {
+
+	      
+
+	      table[class="body"] center {
+	      min-width: 0 !important;
+	      }
+
+	      table[class="body"] .container {
+	      width: 95% !important;
+	      }
+
+	      table[class="body"] .row {
+	      width: 100% !important;
+	      display: block !important;
+	      }
+
+	      table[class="body"] .wrapper {
+	      display: block !important;
+	      padding-right: 10px !important;
+	      padding-left: 10px !important;
+	      }
+
+	      table[class="body"] .columns,
+	      table[class="body"] .column {
+	      table-layout: fixed !important;
+	      float: none !important;
+	      width: 100% !important;
+	      padding-right: 0px !important;
+	      padding-left: 0px !important;
+	      display: block !important;
+	      }
+
+	      table[class="body"] .wrapper.first .columns,
+	      table[class="body"] .wrapper.first .column {
+	      display: table !important;
+	      }
+
+	      table[class="body"] table.columns td,
+	      table[class="body"] table.column td {
+	      width: 100% !important;
+	      }
+
+	      table[class="body"] .columns td.one,
+	      table[class="body"] .column td.one { width: 8.333333% !important; }
+	      table[class="body"] .columns td.two,
+	      table[class="body"] .column td.two { width: 16.666666% !important; }
+	      table[class="body"] .columns td.three,
+	      table[class="body"] .column td.three { width: 25% !important; }
+	      table[class="body"] .columns td.four,
+	      table[class="body"] .column td.four { width: 33.333333% !important; }
+	      table[class="body"] .columns td.five,
+	      table[class="body"] .column td.five { width: 41.666666% !important; }
+	      table[class="body"] .columns td.six,
+	      table[class="body"] .column td.six { width: 50% !important; }
+	      table[class="body"] .columns td.seven,
+	      table[class="body"] .column td.seven { width: 58.333333% !important; }
+	      table[class="body"] .columns td.eight,
+	      table[class="body"] .column td.eight { width: 66.666666% !important; }
+	      table[class="body"] .columns td.nine,
+	      table[class="body"] .column td.nine { width: 75% !important; }
+	      table[class="body"] .columns td.ten,
+	      table[class="body"] .column td.ten { width: 83.333333% !important; }
+	      table[class="body"] .columns td.eleven,
+	      table[class="body"] .column td.eleven { width: 91.666666% !important; }
+	      table[class="body"] .columns td.twelve,
+	      table[class="body"] .column td.twelve { width: 100% !important; }
+
+	      table[class="body"] td.offset-by-one,
+	      table[class="body"] td.offset-by-two,
+	      table[class="body"] td.offset-by-three,
+	      table[class="body"] td.offset-by-four,
+	      table[class="body"] td.offset-by-five,
+	      table[class="body"] td.offset-by-six,
+	      table[class="body"] td.offset-by-seven,
+	      table[class="body"] td.offset-by-eight,
+	      table[class="body"] td.offset-by-nine,
+	      table[class="body"] td.offset-by-ten,
+	      table[class="body"] td.offset-by-eleven {
+	      padding-left: 0 !important;
+	      }
+
+	      table[class="body"] table.columns td.expander {
+	      width: 1px !important;
+	      }
+	      }
+
+	    </style>
+	    <style>
+
+	      /*-------Override column bottom padding-------*/
+	      table.columns .nopad td,
+	      table.column .nopad td {
+	      padding: 0px 0px 0px; 
+	      }
+
+
+	      table.bar {width: 100% !important;}
+
+	      /*-----images-------*/
+	      img {
+	      margin: auto;
+	      }
+
+	      /*----Link colors-----*/
+	      *, p, h1, h2, h3, h4, h5, h6, font {
+	      font-family: "Arial", Helvetica, sans-serif;
+	      }
+	      a {
+	      color: #00365b;     
+	      }
+	      a.grey {color: #3d3d3d;}
+
+	      /*------USAA Background Colors-------*/
+	      .bggrey { background: #e5e5e5;}
+	      .bgwhite { background: #ffffff;}
+	      .bgblue { background: #00365b;}
+	      .bggold { background: #C1A04D}
+	      .bgblack { background: #000000;}
+
+	      /*-----Font Style-----*/
+	      .font10, td.font10 font {
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 10px;
+	      line-height: 13px;
+	      }
+	      .font11, td.font11 font {
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 11px;
+	      line-height: 13px;
+	      }
+	      .font12, td.font12 font{
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 12px;
+	      line-height: 18px;
+	      }
+	      .font13, td.font13 font{
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 13px;
+	      line-height: 19px;
+	      }
+	      .font14, td.font14 font{
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 14px;
+	      line-height: 20px;
+	      }
+	      .font15, td.font15 font{
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 15px;
+	      line-height: 21px;
+	      }
+	      .font16, td.font16 font{
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 16px;
+	      line-height: 22px;
+	      }
+	      .font18, td.font18 font{
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 18px;
+	      line-height: 24px;
+	      }
+	      .font20, td.font20 font{
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 20px;
+	      line-height: 26px;
+	      }
+
+	      .font22, td.font22 font{
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 22px;
+	      line-height: 28px;
+	      }
+	      .font24, td.font24 font{
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 24px;
+	      line-height: 30px;
+	      }
+	      .font26, td.font26 font{
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 26px;
+	      line-height: 32px;
+	      }
+	      .font28, td.font28 font{
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 28px;
+	      line-height: 34px;
+	      }
+	      .font30, td.font30 font {
+	      font-family: "Arial", Helvetica, sans-serif;
+	      text-align: left;
+	      font-size: 30px;
+	      line-height: 36px;
+	      }
+
+	      /*------------small screens only---------*/
+
+	      @media only screen and (max-width: 600px) {
+	      .textcenter-small {
+	      text-align: center;
+	      }
+	      .hidesmall {
+	      display: none !important;
+	      }
+	      
+	      .centersmall {
+	      text-align: center !important;
+	      }
+	      .padleft15-small {
+	      padding-left: 15px !important;
+	      }
+	      }
+
+	      /*------------Large Screens Only--------------*/
+	      @media only screen and (min-width: 600px) {
+	      .hidelarge {
+	      display: none;
+	      }
+	      }
+
+
+	      /*---------line height override---------*/
+	      .lh14, td.lh14 font { line-height: 14px !important;}
+	      .lh16, td.lh16 font { line-height: 16px !important;}
+	      .lh18, td.lh18 font { line-height: 18px !important;}
+	      .lh20, td.lh20 font { line-height: 20px !important;}
+	      .lh22, td.lh22 font { line-height: 22px !important;}
+	      .lh24, td.lh24 font { line-height: 24px !important;}
+	      .lh26, td.lh26 font { line-height: 26px !important;}
+	      .lh28, td.lh28 font { line-height: 28px !important;}
+	      .lh30, td.lh30 font { line-height: 30px !important;}
+	      .lh32, td.lh32 font { line-height: 32px !important;}
+	      .lh34, td.lh34 font { line-height: 34px !important;}
+	      .lh36, td.lh36 font { line-height: 36px !important;}
+	      .lh38, td.lh38 font { line-height: 38px !important;}
+	      .lh40, td.lh40 font { line-height: 40px !important;}
+
+	      .bold {
+	      font-weight: bold;
+	      }
+	      .italic {
+	      font-style: italic;
+	      }
+	      .nowrap {
+	      white-space: nowrap;
+	      }
+
+	      /*------USAA Font Colors-------*/
+	      .white { color: #ffffff;}
+	      .blue { color: #00365b;}
+	      .gold { color: #C1A04D}
+	      .black { color: #000000;}
+	      .grey { color: #3d3d3d;}
+
+
+	      /*----padding-----*/
+
+	      .pad10 { padding-left: 10px !important; padding-right: 10px !important;}
+	      .pad15 { padding-left: 15px !important; padding-right: 15px !important;}
+	      .pad24 { padding-left: 24px !important; padding-right: 24px !important;}
+	      .pad26 { padding-left: 26px !important; padding-right: 26px !important;}
+	      .pad28 { padding-left: 28px !important; padding-right: 28px !important;}
+	      .pad30 { padding-left: 30px !important; padding-right: 30px !important;}
+	      .padleft24 {padding-left: 24px !important;}
+	      .padleft20 {padding-left: 20px !important;}
+	      .padleft15 {padding-left: 15px !important;}
+	      .padleft10 {padding-left: 10px;}
+	      .padright24 {padding-right: 24px !important;}
+	      .padright20 {padding-right: 20px !important;}
+	      .padright15 {padding-right: 15px !important;}
+	      .padright10 {padding-right: 10px !important;}
+	      .pad10 { padding: 10px; }
+	      .nopad { padding: 0 !important;}
+
+	      /*-------Border Radius - Not compatible with some email clients--------*/
+	      .radius {border-radius: 5px;}
+
+	      /*-----Bullet Points-----*/
+	      .bullet { width: 10px; text-align: left; }
+	      .bullet15 {width: 15px; text-align: left;}
+	      .bullet20 {width: 20px; text-align: left;}
+	      .bullet25 {width: 25px; text-align: left;}
+	      .bullet30 {width: 30px; text-align: left;}
+	      .bullettext { width: auto;}
+
+	      /*-----------horizontal alignments-------*/
+	      .textleft {text-align: left;}
+	      .textright {text-align: right;}
+	      .textcenter {text-align: center;}
+	      .center {text-align: center !important;}
+
+	      /*--------Vertical Align--------*/
+	      .vatop { vertical-align: top;}
+	      .vamiddle { vertical-align: middle;}
+	      .vabottom { vertical-align: bottom;}
+
+	      /*--------Button---------*/
+	      .button {
+	      display: block;
+	      padding: 5px;
+	      border: 2px solid white;
+	      border-radius: 5px;
+	      width: 200px;
+	      text-align: center;
+	      box-shadow: 1px 1px 1px gold;
+	      height: 20px;
+	      line-height: 20px;
+	      }
+	      .button a {
+	      color: white;
+	      text-decoration: none;
+	      }
+	      @media only screen and (max-width: 600px) {
+	      .button {
+	      width: auto;
+	      }
+	      .centerinbox {
+	      padding-left: 23% !important;
+	      }
+	      }
+	    </style>
+	    <table class="body" style="background: #e5e5e5">
 	      <tr>
-		<td align="center" class="vatop" style="vertical-align: top; padding: 0px;" valign="top">
-		  <center style="width: 100%; min-width: 560px;">
-		    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;">
+		<td class="center" align="center" valign="top">
+		  <center>
+		    <table class="container bgwhite">
 		      <tr>
-			<td height="20" class="tall20" style="padding: 0px; background: #e7e7e8;"></td>
-		      </tr>
-		    </table>
-		    <table class="templateSection" style="width: 560px; text-align: inherit; border-spacing: 0; border-collapse: collapse; margin: 0 auto; background: #e7e7e8;" >
-		      <tr>
-			<td class="editArea" style="color: #3d3d3d; font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 11px; line-height: 20px !important; width: 70; vertical-align: bottom; padding: 0px;" align="left" valign="bottom" contenteditable="true">
-			  <font style="font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 11px; line-height: 20px !important;">Discover the true value of <a href="https://www.usaa.com/inet/pages/insurance_home_condo?EID=mkt_lds_prop_ho_yo_t1-01" class="grey" style="color: #3d3d3d; font-family: 'Arial', Helvetica, sans-serif;">USAA Homeowners Insurance</a>.</font>
-			</td>
-			<td align="right" class="editArea font11 grey col-3 textright" style="color: #3d3d3d; font-family: 'Arial', Helvetica, sans-serif; text-align: right; font-size: 11px; line-height: 13px; width: 30%; padding: 0px;" contenteditable="true">
-			  <font style="font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 11px; line-height: 13px;">%%IGNORE%%View this e-mail: <a href="http://ebm.e.usaa.com/c/tag/%%t%%/doc.html?t_params=%%t_params%%" class="grey" style="color: #3d3d3d; font-family: 'Arial', Helvetica, sans-serif;">Web</a>.%%IGNORE%%</font>
-			</td>
-		      </tr>
-		      <tr><td colspan="2" height="3" class="tall3" style="padding: 0px; background: #e5e5e5;"></td></tr>
-		    </table>
+			<td>
 
-		    <table bgcolor="#BEBEBE" style="width: 560px; text-align: inherit; border-spacing: 0; border-collapse: collapse; margin: 0 auto;" align="center">
-		      <tr>
-			<td style="padding: 0px;">
-			  <table class="container" style="width: 560px; text-align: inherit; border-spacing: 0; border-collapse: collapse; margin: 0 auto;">
+			  <table class="row templateSection">
 			    <tr>
-			      <td class="bgwhite" style="background: #ffffff; padding: 0px;" bgcolor="#FFFFFF">
-				<center style="width: 100%; min-width: 560px;">
-				  <table width="100%" style="background: #ffffff; width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;"  class="templateSection">
-				    <tr><td colspan="4" height="10" style="padding: 0px; background: #ffffff;"></td></tr>
-				    <tr>
-				      <td width="24" style="padding: 0px; background: #ffffff;"></td>
-				      <td valign="top" width="326" style="padding: 0px; background: #ffffff;">
-					<table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;">
-					  <tr>
-					    <td width="100%" valign="middle" style="padding: 0px; background: #ffffff;">
-					      <a href="https://www.usaa.com/?EID=mkt_lds_prop_ho_yo_t1-04" style="color: #00365b; font-family: 'Arial', Helvetica, sans-serif;"><img alt="USAA&reg;" src="images/logo.gif" style="display: block; width: auto; padding: 0; border: 0; background: #ffffff" /></a>
-					    </td>
-					  </tr>
-					</table>
-				      </td>
-				      <td class="vatop" width="196" style="vertical-align: top; padding: 0px;" valign="top">
-					<table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;">
-					  <tr>
-					    <td align="right" class="vatop" width="16" style="vertical-align: top; padding: 0px; text-align: right;" valign="top">
-					      <img alt="" src="images/sec_left.gif" style="width: auto; padding: 0; border: 0;" />
-					    </td>
-					    <td valign="top" width="180" style="padding: 0px; background: #e7e7e8;">
-					      <table bgcolor="#E7E7E8" width="100%" style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;">
-						<tr>
-						  <td colspan="3" style="padding: 0px; background: #e7e7e8;">
-						    <img alt="" src="images/sec_top.gif" style="display: block; width: auto; padding: 0; border: 0;" />
-						  </td>
-						</tr>
-						<tr>
-						  <td class="vatop" width="20" style="vertical-align: top; padding: 0px; background: #e7e7e8;" valign="top">
-						    <img alt="" src="images/sec_right.gif" style="display: block; width: auto; padding: 0; border: 0;" />
-						  </td>
-						  <td width="150" class="editArea blue font11 lh14" style="color: #00365b; font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 11px; line-height: 14px !important; padding: 0px; background: #e7e7e8;" align="left" contentEditable="true">
-						    <font style="font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 11px; line-height: 14px !important; background: #e7e7e8;"><b>USAA SECURITY ZONE</b><br />
-						      %%FNAME_LOW%%<br />
-						      %%LNAME_LOW%%<br />
-						      USAA # ending in: %%MEMBER_ID_FOUR%%</font>
-						  </td>
-						  <td width="10" style="padding: 0px; background: #e7e7e8;"></td>
-						</tr>
-						<tr>
-						  <td colspan="3" style="padding: 0px;">
-						    <img alt="" src="images/sec_bottom.gif" style="display: block; width: auto; padding: 0; border: 0;" />
-						  </td>
-						</tr>
-					      </table>
-					    </td>
-					  </tr>
-					</table>
-				      </td>
-				      <td width="14" style="padding: 0px;"></td>
-				    </tr>
-				    <tr><td colspan="4" height="10" style="padding: 0px;"></td></tr>
-				  </table>
-				  <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0; background: #00365b; padding: 0;" class="templateSection">
-				    <tr>
-				      <td width="292" class="bgblue" style="background: #00365b; padding: 0px; vertical-align: middle;" bgcolor="#00365B">
-					<table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;">
-					  <tr>
-					    <td class="editArea" style="padding: 0px 10px 0px 24px; background: #00365b;" align="left" contenteditable="true" placeholder="testing">
-					      <font style="font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 22px; line-height: 1.2; color: #ffffff;" placeholder="testing">Discover the true value of USAA Homeowners insurance.</font>
-					    </td>
-					  </tr>
-					  <tr>
-					    <td height="20" style="padding: 0px; background: #00365b;"></td>
-					  </tr>
-					  <tr>
-					    <td style="width: 100%; padding: 0px 24px; background: #00365b;">
-					      <a href="" style="color: #00365b; font-family: 'Arial', Helvetica, sans-serif;"><img src="images/cta_button.jpg" alt="Start Your Quote" style="width: auto; padding: 0; border: 0;" /></a>
-					    </td>
-					  </tr>
-					 
-					</table>
-				      </td>
-				      <td width="268" style="padding: 0;">
-					<img src="images/masthead.jpg" alt="Beautiful front porch and door" style="display: block; width: 100%; border: 0; padding: 0;" />
-				      </td>
-				    </tr>
-				    <tr>
-				      <td colspan="2" height="3" style="background: #C1A04D; padding: 1px;" bgcolor="#C1A04D"></td>
-				    </tr>
-				  </table>
+			      <td height="6"></td>
+			    </tr>
+			    <tr>
+			      <td class="wrapper first">
+				<table class="seven columns">
+				  <tr>
+				    <td class="centersmall padleft15 ">
+				      <img src="images/logo.gif" />
+				    </td>
+				  </tr>
+				  <tr>
+				    <td height="10" class="hidelarge"></td>
+				  </tr>
+				</table>
+			      </td>
+			      <td class="wrapper last center bggrey radius pad10">
+				<table class="five columns">
+				  <tr>
+				    <td class="panel sub-grid">
+				      <table>
 
-				  <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;" class="templateSection">
-				    <tr><td height="20" style="padding: 0px; background: #ffffff;"></td></tr>
-				    <tr>
-				      <td class="editArea" style="padding: 0px 24px; background: #ffffff;" align="left" contenteditable="true">
-					<font style="font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 14px; line-height: 1.2;">Dear {First Name},<br /><br />
-					  
-					  When it comes to helping protect your investment and receiving a great claim experience, no one is more committed than USAA. Here's why:</font>
-				      </td>
-				    </tr>
-				    <tr>
-				      <td height="20" style="padding: 0px; background: #ffffff;"></td>
-				    </tr>
-				    <tr>
-				      <td class="editArea" style="padding: 0px 45px; background: #ffffff;" align="left" contenteditable="true">
-					<font style="font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 14px; line-height: 1.2;"><b>Replacement Cost Coverage:</b> USAA covers your home and belongings at <i>today's value, with no depreciation</i> factored in &mdash; unlike some other insurers.&sup1;
-					  <br /><br />
-					  <b>Highly Rated Service:</b> USAA is the highest rated in customer advocacy in a survey conducted by Forrester Research, Inc.&sup2;
-					  <br /><br />
-					  <b>Great Claims Service:</b> We offer 24/7 claims service, and we pay using direct deposit to help you get your home restored as soon as possible.</font>
-				      </td>
-				    </tr>
-				    <tr>
-				      <td height="20" style="padding: 0px; background: #ffffff;"></td>
-				    </tr>
-				    <tr>
-				      <td class="editArea" style="color: #000000; font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 16px; line-height: 22px; width: 100%; padding: 0px 24px; background: #ffffff;" align="left" contenteditable="true">
-					<font style="font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 14px; line-height: 22px;">Switching is easier than you think. We can help with all your questions.</font>
-				      </td>
-				    </tr>
-				    <tr>
-				      <td height="25" style="padding: 0px;"></td>
-				    </tr>
-				  </table>
-				 
-				  <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;" class="templateSection">
-				    <tr>
-				      <td class="editArea" style="text-align: center; background: #ffffff;" align="center" contenteditable="true">
-					<font style="font-family: 'Arial', Helvetica, sans-serif; font-size: 20px; line-height: 1.2; font-weight: bold; color: #00365b;">Take the next step.<br />
-					  Call a USAA insurance specialist at<br />
-					  1-800-531-USAA (8722) to get a personalized quote.</font>
-				      </td>
-				    </tr>
-				    <tr>
-				      <td height="15" style="padding: 0px; background: #ffffff;"></td>
-				    </tr>
-				    <tr>
-				      <td class="col-10" align="center" style="width: 100%; padding: 0px; text-align: center;">
-					<a href="https://www.usaa.com/inet/pages/insurance_home_condo?EID=mkt_lds_prop_ho_yo_t1-03" style="color: #00365b; font-family: 'Arial', Helvetica, sans-serif;"><img src="images/cta_button2.jpg" alt="Start Your Quote" style="width: auto; padding: 0; border: 0;" /></a>
-				      </td>
-				    </tr>
-				  </table>
-				  <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;" class="templateSection">
-				    <tr>
-				      <td height="40" style="padding: 0px;"></td>
-				    </tr>
-				    <tr>
-				      <td class="col-10 vamiddle" align="center" style="width: 100%; vertical-align: middle; padding: 0px; text-align: center; background: #ffffff;" valign="middle">
-					<img src="images/logo_footer.gif" alt="USAA&reg;" style="width: auto; padding: 0; border: 0;" />
-				      </td>
-				    </tr>
-				    <tr>
-				      <td height="3" style="padding: 0px; background: #ffffff;"></td>
-				    </tr>
-				    <tr>
-				      <td class="editArea" style="text-align: center; font-size: 12px; line-height: 14px; font-weight: bold; width: 100%; padding: 0px; background: #ffffff;" align="center" contenteditable="true">
-					<font style="font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 12px; line-height: 14px;">We know what it means to serve.<sup>&reg;</sup></font>
-				      </td>
-				    </tr>
-				    <tr>
-				      <td height="5" style="padding: 0px;"></td>
-				    </tr>
-				    <tr>
-				      <td class="editArea" style="text-align: center; font-size: 11px; line-height: 13px; width: 100%; padding: 0px; background: #ffffff;" align="center" contenteditable="true">
-					<font style="font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 11px; line-height: 13px;">Insurance &nbsp;&nbsp; Banking &nbsp;&nbsp; Investments &nbsp;&nbsp; Retirement &nbsp;&nbsp; Advice</font>
-				      </td>
-				    </tr>
-				    <tr>
-				      <td class="col-10" height="10" style="width: 100%; padding: 0px;"></td>
-				    </tr>
-				    <tr>
-				      <td height="3" style="width: 100%; background: #C1A04D; padding: 0px;" bgcolor="#C1A04D"></td>
-				    </tr>
-				    <tr>
-				      <td class="col-10 bgblue" height="13" style="width: 100%; background: #00365b; padding: 0px;" bgcolor="#00365B"></td>
-				    </tr>
-				  </table>
-				
-				  <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;" class="templateSection">
-				    <tr><td height="5" style="padding: 1px;"></td></tr>
-				    <tr>
-				      <td class="editArea" height="40" style="text-align: center; font-size: 11px; line-height: 13px; width: 100%; vertical-align: middle; padding: 0px; background: #ffffff;" align="center" valign="middle" contenteditable="true">
-					<font style="font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 11px; line-height: 13px;"><a href="" style="color: #00365b; font-family: 'Arial', Helvetica, sans-serif;">Change your e-mail address</a>&nbsp; | &nbsp;<a href="http://ebm.e.usaa.com/r/regf2?a=0&amp;aid=2078198359&amp;n=2&amp;t=%%t%%&amp;email=%%email%%" style="color: #00365b; font-family: 'Arial', Helvetica, sans-serif;">Unsubscribe</a> &nbsp; | &nbsp; <a href="" style="color: #00365b;">Privacy Promise</a></font>
-				      </td>
-				    </tr>
-				    <tr><td height="5" style="padding: 1px;"></td></tr>
-				  </table>
-				  <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;" class="templateSection">
-				    <tr>
-				      <td class="editArea" style="width: 100%; padding: 0px 15px; line-height: 13px;" align="left" contenteditable="true">
-					<font style="font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 11px; line-height: 13px;"><b>Please do not reply to this e-mail. To contact USAA, visit our secure <a href="https://www.usaa.com/inet/pages/ContactUsMain?EID=mkt_lds_prop_ho_yo_t1-07" style="color: #00365b; font-family: 'Arial', Helvetica, sans-serif;">contact page</a>.</b><br />
-					  <br />
-					  USAA will never ask for sensitive personal information such as a Social Security number, a PIN, account numbers or a password in an e-mail. To ensure delivery to your inbox, please add <a href="mailto:offers@e.usaa.com" style="color: #00365b; font-family: 'Arial', Helvetica, sans-serif;">offers@e.usaa.com</a> to your address book.<br />
-					  <br />
-					  1 With replacement cost coverage, at our option, subject to policy limits and policy deductible, if you actually replace the property we will pay you the lesser of our cost to restore, repair or replace the damaged property or the amount you actually spent to restore, repair or replace the property.<br />
-					  <br />
-					  2 Forrester Research, Inc., Customer Advocacy 2013: How U.S. Consumers Rate Their Financial Services Firms, November 2013.<br />
-					  <br />
-					  Membership and product eligibility and underwriting restrictions apply and are subject to change.<br />
-					  <br />
-					  Homeowners insurance provided by United Services Automobile Association, USAA Casualty Insurance Company, USAA General Indemnity Company, Garrison Property and Casualty Insurance Company, and USAA Texas Lloyd's Company, San Antonio, TX. Each company has sole financial responsibility for its own products.<br />
-					  <br />
-					  You may contact us about this advertisement at 9800 Fredericksburg Road, San Antonio, TX 78288-9876</font>
-				      </td>
-				    </tr>
-				  </table>
+					<tr>
+					  <td class="one sub-columns">
+					    <img src="images/security.png" style="float: left;" />
+					  </td>
+					  <td class="font11 blue eleven sub-columns editArea">
+					    <font>
+					      <b>USAA SECURITY ZONE</b><br />
+					      %%FNAME_LOW&&<br />
+					      %%LNAME_LOW%%<br />
+					      USAA # ending in:<br />
+					      %%MEMBER_IR%%n
+					    </font>
+					  </td>
+					</tr>
+				      </table>
+				    </td>
+				  </tr>
 
-				  <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;" class="templateSection">
-				    <tr>
-				      <td class="editArea" style="text-align: left; font-size: 11px; line-height: 13px; width: 50%; vertical-align: bottom; padding: 0px 0px 0px 15px;" align="left" valign="bottom" contenteditable="true">
-					<font style="font-family: 'Arial', Helvetica, sans-serif; text-align: left; font-size: 11px; line-height: 13px;">&copy; 2014 USAA. 205446-0614</font>
-				      </td>
-				      <td class="col-5 padright15" style="width: 50%; padding: 0px 15px 0px 0px;">
-					<img src="images/disclosure_lockup.gif" alt="Please consider the environment before printing this email." style="display: block; width: auto; padding: 0; border: 0;" />
-				      </td>
-				    </tr>
-				  </table>
-				  
-				  <span id="loadTemplate"></span>
-				</center>
+				</table>
+			      </td>
+			      <td class="expander"></td>
+			    </tr>
+			    <tr>
+			      <td height="6"></td>
+			    </tr>
+			  </table>
+			
+			  
+			  <table class="row templateSection" style="background: #00365b">
+			    <tr>
+			      <td class="wrapper first">
+				<table class="eight columns">
+				  <tr>
+				    <td height="16"></td>
+				  </tr>
+				  <tr>
+				    <td class="white font26 padleft15 centersmall editArea">
+				      <font>
+					Get your special low rate.<br />
+					No balance transfer fees.
+				      </font>
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				  <tr>
+				    <td height="15"></td>
+				  </tr>
+				  <tr>
+				    <td class="padleft20 padright20 editArea">
+				      <div class="button">
+					<a href="">Transfer Your Balances</a>
+				      </div>
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				</table>
+			      </td>
+			      <td class="wrapper last center">
+				<table class="four columns">
+				  <tr>
+				    <td height="10" colspan="2"></td>
+				  </tr>
+				  <tr>
+				    <td class="hidelarge" height="15" colspan="2"></td>
+				  </tr>
+				  <tr>
+				    <td class="white centersmall">
+				      <img src="images/masthead.gif" />
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				  <tr>
+				    <td height="10" colspan="2"></td>
+				  </tr>
+				</table>
 			      </td>
 			    </tr>
 			  </table>
+			
+			 
+			  <table class="row templateSection">
+			    <tr>
+			      <td height="30"></td>
+			    </tr>
+			    <tr>
+			      <td class="wrapper">
+				<table class="eight columns">
+				  <tr>
+				    <td class="centersmall bold blue font20 padleft20 editArea">
+				      <font>
+					Offer ends soon:
+				      </font>
+				    </td>
+				  </tr>
+				  <tr>
+				    <td class="centersmall padleft20">
+				      <img src="images/timer.jpg" alt="timer"  />
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				  <tr>
+				    <td ></td>
+				    <td class="expander"></td>
+				  </tr>
+				  <tr>
+				    <td height="10" colspan="2"></td>
+				  </tr>
+				  <tr>
+				    <td class="font12 black padleft20 editArea">
+				      <font>
+					Save even more when you transfer high-rate balances to your USAA MasterCard&reg; Credit Card edning in {XXXX}.
+				      </font>
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				  <tr>
+				    <td height="20"></td>
+				  </tr>
+				  
+				  <tr>
+				    <td class="font12 black padleft20 editArea">
+				      <font>
+					<b>Get a promotional rate of 0% APR until July 1, 2015,</b> on balance transfers and convenience checks that post to your account between July 1, 2014, and August 15, 2014. After July 1, 2015, your APR on these balances will be <b>&lt;XX.XX&gt;</b>. This APR will vary with the market based on the Prime Rate.
+				      </font>
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				  
+				  <tr>
+				    <td height="20" colspan="2"></td>
+				  </tr>
+				  <tr>
+				    <td class="font12 black padleft20 editArea">
+				      <font>
+					<b>Skip the transaction fees</b> on balance transfers and convenience checks that post to your account by <b>August 15, 2014</b>. Each balance transfer and convience check that posts after this date will receive the regular balance transfer or cash advance fee of just <b>3% or $XXX</b>, whichever is less.
+				      </font>
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				  <tr>
+				    <td height="30" colspan="2"></td>
+				  </tr>
+				</table>
+			      </td>
+			      <td class="wrapper last center">
+				<table class="four columns">
+				  
+				  <tr>
+				    <td class="blue bold font12 padleft15-small editArea">
+				      <font>
+					BONUS OFFER
+				      </font>
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				  <tr><td height="10" colspan="2"></td></tr>
+				  <tr>
+				    <td class="black font12 padleft15-small editArea">
+				      <font>
+					<b>GET A 5% CASH<br />
+					  REBATE ON GAS</b><br />
+					for up to one year.&sup1;
+				      </font>
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				  <tr><td height="10" colspan="2"></td></tr>
+				  <tr>
+				    <td class="black font12 padleft15-small editArea">
+				      <font>
+					<b>1.</b> Visit: "<a href="#">My Offers</a>" at usaa.com<br />
+					<b>2.</b> Accept by <b>August 15, 2014</b><br />
+					<b>3</b> Use your USAA MasterCard Credit Card ending in {XXXX} at the pump
+				      </font>
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				</table>
+			      </td>
+			    </tr>
+			  </table>
+			  
+			 
+
+			  <table class="row templateSection">
+			    <tr>
+			      <td height="20" class="hidelarge"></td>
+			    </tr>
+			    <tr>
+			      <td class="wrapper">
+				<table class="twelve columns">
+				  <tr>
+				    <td class="bold blue textcenter font18 editArea">
+				      <font>
+					Don't wait. Transfer your balances<br />
+					or order <a href="">convenience checks</a> today.
+				      </font>
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				</table>
+			      </td>
+			    </tr>
+			    <tr>
+			      <td height="20"></td>
+			    </tr>
+			  </table>
+
+			  <table class="row templateSection">
+			    <tr>
+			      <td class="wrapper">
+				<table class="twelve columns">
+				  <tr>
+				    <td style="border-radius: 10px; border: 2px solid #00365b;">
+				      <table>
+					<tr>
+
+					  <td class="wrapper">
+					    <table class="four columns nopad">
+					      <tr>
+						<td class="panel sub-grid centerinbox">
+						  <table>
+						    
+						    <tr>
+						      <td class="four sub-columns small">
+							<img src="images/1.jpg" alt="" />
+						      </td>
+						      <td class="eight sub-columns font12 bold vamiddle editArea">
+							<font>
+							  <a href="">CLICK TO TRANSFER</a><br />
+							  at usaa.com
+							</font>
+						      </td>
+						    </tr>
+						  </table>
+						</td>
+						<td class="expander"></td>
+					      </tr>
+					    </table>
+					  </td>
+
+					  <td class="wrapper">
+					    <table class="four columns nopad" >
+					      <tr>
+						<td class="panel sub-grid centerinbox">
+						  <table>
+						    
+						    <tr>
+						      <td class="four sub-columns small">
+							<img src="images/2.jpg" alt="" />
+						      </td>
+						      <td class="eight sub-columns font12 bold vamiddle editArea">
+							<font>
+							  <a href="">USE OUR<br />MOBILE APP</a><br />
+							  Download it now
+							</font>
+						      </td>
+						    </tr>
+						  </table>
+						</td>
+						<td class="expander"></td>
+					      </tr>
+					    </table>
+					  </td>
+
+					  <td class="wrapper">
+					    <table class="four columns nopad" >
+					      <tr>
+						<td class="panel sub-grid centerinbox">
+						  <table>
+						    
+						    <tr>
+						      <td class="one sub-columns small">
+							<img src="images/3.jpg" alt="" />
+						      </td>
+						      <td class="eleven sub-columns font12 bold vamiddle editArea">
+							<font>
+							  <a href="">1-800-531-5732</a><br />
+							  Call us today.
+							</font>
+						      </td>
+						    </tr>
+						  </table>
+						</td>
+						<td class="expander"></td>
+					      </tr>
+					    </table>
+					  </td>
+
+					</tr>
+				      </table>
+				    </td>
+				  </tr>
+				</table>
+			      </td>
+			    </tr>
+			  </table>
+			  
+			  <table class="row templateSection">
+			    <tr>
+			      <td class="wrapper">
+				<table class="twelve columns">
+				  <tr>
+				    <td height="20"></td>
+				  </tr>
+				  <tr>
+				    <td class="center">
+				      <img src="images/logo_footer.gif" />
+				    </td>
+				  </tr>
+				  <tr>
+				    <td class="blue font11 center editArea">
+				      <font>
+					<b class="font12">We know what it means to serve.<sup>&reg;</sup><br /></b>
+					Insurance &nbsp;&nbsp; Banking &nbsp;&nbsp; Investments &nbsp;&nbsp; Retirement &nbsp;&nbsp; Advice
+				      </font>
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				</table>
+			      </td>
+			    </tr>
+			  </table>
+			  <table class="bar templateSection">
+			    <tr>
+			      <td>
+				<table class="bar bggold">
+				  <tr>
+				    <td height="3"></td>
+				  </tr>
+				</table>
+				<table class="bar bgblue">
+				  <tr>
+				    <td height="8"></td>
+				  </tr>
+				</table>
+				<table class="bar ">
+				  <tr>
+				    <td height="6"></td>
+				  </tr>
+				</table>
+			      </td>
+			    </tr>
+			  </table>
+			  <table class="row templateSection">
+			    <tr>
+			      <td class="wrapper">
+				<table class="twelve columns">
+				  <tr>
+				    <td class="blue font11 center editArea">
+				      <font>
+					<br />
+					<a href="" class="nowrap">Change your e-mail address</a> &nbsp;&nbsp; |  
+					<a href="" class="nowrap">Unsubscribe</a> &nbsp;&nbsp; |
+					<a href="" class="nowrap">Privacy Promise</a> &nbsp;&nbsp; 
+					<br /><br />
+				      </font>
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				</table>
+			      </td>
+			    </tr>
+			  </table>
+			 
+			  <table class="row templateSection">
+			    <tr>
+			      <td class="wrapper">
+				<table class="twelve columns">
+				  <tr>
+				    <td class="blue font11 pad10 editArea">
+				      <font>
+					<b>Please do not reply to this e-mail. To contact USAA, visit our secure <a href="">contact page</a>.</b>
+					<br /><br />
+
+					USAA will never ask for sensitive personal information such as a Social Security number, a PIN, account numbers or a password in an e-mail. To ensure delivery to your inbox, please add <a href="mailto:offers@e.usaa.com">offers@e.usaa.com</a> to your a  ddress book.
+					<br /><br />
+					Offer good for card number ending in {XXXX}. 
+					<br /><br />
+					<b>There is No Grace Period on Purchases while carrying an Introductory or other Promotional Balance</b>. In order to have a Grace Period on Purchases, you must pay the “New Balance” shown on your statement in full each month. If you choose to revolve an introductory or promotional balance from one month to the next, you won't be paying your New Balance in full. This means <b>no Grace Period will apply while you carry an introductory or promotional balance until you pay the New Balance (including all introductory/promotional balances) in full.</b> Please call us at 1-800-531-5732 if you have any questions about how your Grace Period works.
+					<br /><br />
+					<b><u>Important Information About Transferring Balances</u></b>
+					<br />
+					&bull; You may transfer balances totaling up to your available credit. We may refuse to process a balance transfer if it would exceed your available credit. Balance transfers cannot be made from another USAA account. Please allow up to 4 business days for balance transfers we can process electronically and 7–10 business days for all other balance transfers. 
+					<br />
+					&bull; Please continue to make payments on the unpaid balance of each account according to the terms of the agreement. We cannot close your other account(s) with other issuers, even if you transfer the entire balance. Please contact the issuer of the account for information on how to close that account. <b>Important: If you transfer an amount related to a transaction you dispute, you may lose your rights against the other creditor. Your dispute does not transfer to us.</b>
+					<br />
+					&bull; <b>Balance transfers, convenience checks and cash advance fees will be waived during the promotional period. Thereafter, each balance transfer and each convenience check will be subject to the regular fee of 3% of the amount of each balance transfer and each convenience check (maximum $XXX per transfer).</b> There is no grace period for balance transfers and convenience checks. At the end of the promotional period, all unpaid balances receiving the promotional APR will be moved from the promotional balance to your regular Cash Advance APR balance.
+					<br /><br />
+					1 Rebate is earned on the first $150 of gas purchases posted to your USAA MasterCard Credit Card account during each of the first 12 billing periods after you accept the offer and will be credited at the end of the 12th billing period if your account is open and current during that time. Gas rebate does not apply to purchases at warehouses, grocery stores or other locations that do not process the gasoline purchase using the merchant category code for gas station.  
+					<br /><br />
+					This credit card program is issued by USAA Savings Bank, Member FDIC. 
+					<br /><br />
+					You may contact us about this advertisement at 9800 Fredericksburg Road, San Antonio, TX 78288-9876
+				      </font>
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				</table>
+			      </td>
+			    </tr>
+			  </table>
+			  
+			  <table class="row templateSection">
+			    <tr>
+			      <td class="wrapper">
+				<table class="five columns">
+				  <tr>
+				    <td height="15"></td>
+				  </tr>
+				  <tr>
+				    <td class="black font11 centersmall pad10 editArea">
+				      <font>
+					&copy; 2014 USAA. 201030-0714
+				      </font>
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				</table>
+			      </td>
+			      <td class="wrapper">
+				<table class="seven columns">
+				  <tr>
+				    <td class="centersmall">
+				      <img src="images/disclosure_lockup.gif" "Please consider the audience before printing this email." />
+				    </td>
+				    <td class="expander"></td>
+				  </tr>
+				</table>
+			      </td>
+			    </tr>
+			  </table>
+			  
+
+			  <!-- container end below -->
 			</td>
 		      </tr>
 		    </table>
-		    <table style="width: 100%; border-spacing: 0; border-collapse: collapse; margin: 0;">
-		      <tr>
-			<td class="col-10" height="10" style="width: 100%; padding: 0px; background: #e7e7e8;"></td>
-		      </tr>
-		    </table>
+
 		  </center>
 		</td>
 	      </tr>
 	    </table>
+
+
+
+
 
 	  </div>
 
@@ -446,7 +1150,7 @@
 	    </li>
 
 	    <li class="templateSlide">
-     
+	      
 	      <div class="templateCategory">
 		<h3 class="templateCatLeft transitionFast">&lt;</h3>
 		<div class="templateCatWrap">

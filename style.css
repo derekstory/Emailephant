@@ -220,8 +220,23 @@ img#icon:hover {
     border-right: 1px orange solid;
     border-left: 1px orange solid;
 }
-#download:hover {
+#download:hover, #mobileShow:hover {
     background: #111;
+}
+#mobileShow {
+    display: inline;
+    font-size: 1em;
+    line-height: 3.1em;
+    height: 3em;
+    z-index: 20;
+    color: #fff;
+    position: absolute;
+    background: #444;
+    left: 193px;
+    cursor: pointer;
+    padding: 0 10px 0 10px;
+    border-right: 1px orange solid;
+    border-left: 1px orange solid;
 }
 
 /* THE EMAIL BUILDER TOOL */
@@ -258,14 +273,20 @@ img#icon:hover {
     margin: 0 auto;
 }
 @media only screen and (max-width: 980px){
+
+    #pageContain, #builder { 
+	width: 1000px;
+    }
     #templateChoice, #emailPreview {
 	height: 700px !important;
 	position: relative;
     }
     #templateChoice {
+	width: 290px;
 	float: right;
     }
     #emailPreview {
+	width: 680px;
 	float: left;
     }
 }
@@ -285,13 +306,11 @@ li.templateSlide {
     margin-right: 10px;
 }
 
-/*
-    For clearfix information visit:
-    http://nicolasgallagher.com/micro-clearfix-hack/
-*/
-.clearfix:before, .clearfix:after { content: " "; display: table; }
-.clearfix:after { clear: both; }
-.clearfix { *zoom: 1;}
+
+.templateCategory * {
+    font-family: 'Advent Pro', sans-serif;
+    font-weight: normal;
+}
 .templateCategory {
     z-index: 50;
     width: 100%;
@@ -371,8 +390,6 @@ div font{
     -o-transition: all .5s ease;
     transition: all .5s ease;
     height: 20px;
-
-
 }
 .templateSection {  
     -webkit-transition: all .5s ease;
@@ -418,6 +435,8 @@ div font{
     font-size: 12px;
     padding: 0;
     outline: 0 solid transparent;
+    color: white;
+    border: none;
 }
 #editor {
     z-index: 50;
@@ -606,4 +625,25 @@ font:hover {
 }
 .menuConfirm {
     background: #D64541;
+}
+
+
+/*Mobile Preview*/
+
+#mobilePrev {
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, .85);
+    position: fixed;
+    z-index: 1000;
+    margin: 0;
+    display: none;
+}
+iframe {
+    height: 380px;
+    width: 390px;
+    position: fixed;
+    left: 35%;
+    top: 18%;
+    border: 5px solid #aaa;
 }
