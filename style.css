@@ -250,7 +250,7 @@ img#icon:hover {
     height: 100%;
 }
 #emailPreview {
-    width: 65%;
+    width: 75%;
     height: 94%;
     background: #333333;
     border: 2px solid #EB9532;
@@ -260,7 +260,7 @@ img#icon:hover {
     position: fixed;
 }
 #templateChoice {
-    width: 35%;
+    width: 25%;
     height: 94%;
     background: #333333;
     border: 2px solid #EB9532;
@@ -271,6 +271,20 @@ img#icon:hover {
     overflow-x: hidden; 
     overflow-y: auto;
     margin: 0 auto;
+}
+.template img {
+    height: 10em;
+    width: 100%;
+    opacity: .4;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+}
+.template:hover > img {
+    opacity: 1;
+   
 }
 @media only screen and (max-width: 980px){
 
@@ -357,7 +371,6 @@ h3.templateCatRight:hover, h3.templateCatLeft:hover {
     border: 2px solid #EB9532;
     position: relative;
     overflow: hidden;
-    opacity: .9;
 }
 
 .template:hover {

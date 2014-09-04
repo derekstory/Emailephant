@@ -17,9 +17,9 @@ var confirmOnPageExit = function (e)
     return message;
 };
 window.onload = function() {
-    //Turn prompt on
+    //Turn prompt on (uncomment next line)
     //window.onbeforeunload = confirmOnPageExit;
-    //Turn prompt off
+    //Turn prompt off (comment next line)
     window.onbeforeunload = null;
 };
 
