@@ -629,7 +629,14 @@ font:hover {
 
 
 /*Mobile Preview*/
-
+img#mobileClose {
+    width: 40px;
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    right: 0;
+    margin: 50px;
+}
 #mobilePrev {
     height: 100%;
     width: 100%;
@@ -639,11 +646,43 @@ font:hover {
     margin: 0;
     display: none;
 }
-iframe {
+#mobileWrap {
     height: 380px;
     width: 390px;
-    position: fixed;
-    left: 35%;
-    top: 18%;
+    position: absolute;
+    right: 10%;
+    top: 12%;
+}
+#desktopWrap {
+    height: 480px;
+    width: 630px;
+    position: absolute;
+    right: 45%;
+    top: 12%;
+}
+iframe {
+    width: 100%;
+    height: 100%;
     border: 5px solid #aaa;
+}
+#mobileWrap h2, #desktopWrap h2{
+    color: white;
+    padding-bottom: .2em;
+    font-size: 4em;
+}
+@media only screen and (max-width: 1300px){
+    #mobileWrap {
+	right: 3%;
+    }
+    #desktopWrap {
+	right: 42%;
+    }
+}
+@media only screen and (max-width: 1080px){
+    #desktopWrap {
+	display: none;
+    }
+    #mobileWrap {
+	right: 27%;
+    }
 }

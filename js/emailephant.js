@@ -275,6 +275,7 @@ $("#linkEditDone").click(function() {
 });
 
 
+
 //Edit image src and alt text on click (non-linked image)
 $(function () {
     $("#editImage").hide();
@@ -296,7 +297,7 @@ $("#imageEditDone").click(function () {
 });
 
 //Enter keystroke closes all editboxes and saves changes 
-$("#editLink input, #editImage input, #editImageLink input").keyup(function(event){
+$("#editImage input").keyup(function(event){
     if(event.keyCode == 13){
         $("#editLink, #editImage, #editImageLink").fadeOut(200);
 	var imgSrc = $("#imageSrc").val();
@@ -335,14 +336,15 @@ $("#linkedimageEditDone").click(function () {
     $(linkedimgChange).attr('href', linkedimgLink);
 });
 //Enter keystroke closes all editboxes and saves changes 
-$("#editLink input, #editImage input, #editImageLink input").keyup(function(event){
+$("#editImageLink input").keyup(function(event){
     if(event.keyCode == 13){
-	var linkedimgSrc = $("#linkedimageSrc").val();
-	var linkedimgAlt = $("#linkedimageAlt").val();
-	var linkedimgLink = $("#linkedimageLink").val();
-	$(linkedimgChangeImg).attr('src', linkedimgSrc).attr('alt', linkedimgAlt);
-	$(linkedimgChange).attr('href', linkedimgLink);
         $("#editLink, #editImage, #editImageLink").fadeOut(200);
+ var linkedimgSrc = $("#linkedimageSrc").val();
+    var linkedimgAlt = $("#linkedimageAlt").val();
+    var linkedimgLink = $("#linkedimageLink").val();
+    $(linkedimgChangeImg).attr('src', linkedimgSrc).attr('alt', linkedimgAlt);
+    $(linkedimgChange).attr('href', linkedimgLink);
+
     }
 });
 
@@ -501,7 +503,7 @@ $('#mobileShow').click(function () {
     $('#mobilePrev').fadeIn(300);
     $('td.editArea').attr('contenteditable', false);
 
-    var $iframe = $('iframe');
+    var $iframe = $('iframe#mobile');
     var iframe = $iframe[0];
     var doc = iframe.document;
     var content = $('#emailCode').html();
@@ -518,7 +520,36 @@ $('#mobileShow').click(function () {
 
 
 });
+
+//Show previews and turn off contenteditable
+$('#mobileShow').click(function () {
+    $('#mobilePrev').fadeIn(300);
+    $('td.editArea').attr('contenteditable', false);
+
+    var $iframe = $('iframe#desktop');
+    var iframe = $iframe[0];
+    var doc = iframe.document;
+    var content = $('#emailCode').html();
+    if (iframe.contentDocument) {
+        doc = iframe.contentDocument;
+    } else if (iframe.contentWindow) {
+        doc = iframe.contentWindow.document;
+    }
+    doc.open();
+    doc.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"   \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
+
+    doc.writeln(content);
+    doc.close();
+});
+
+//Turn contenteditable back on and close preview
 $('#mobileClose').click(function () {
     $('#insert').attr('contenteditable', true);
     $('#mobilePrev').fadeOut(300);
+});
+//Close previews on escape key
+$(document).keydown(function(e) {
+    if (e.keyCode == 27) {
+    $('#mobilePrev').fadeOut(300);
+    }
 });

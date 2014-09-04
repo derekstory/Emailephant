@@ -16,9 +16,16 @@
   <body>
     
     <div id="mobilePrev">
-      <button id="mobileClose">Close</button>
-      <iframe>
-      </iframe>
+
+      <img id="mobileClose" src="https://cdn1.iconfinder.com/data/icons/CrystalClear/128x128/actions/button_cancel.png">
+      <div id="mobileWrap">
+	<h2 class="advent">Mobile</h2>
+	<iframe id="mobile"></iframe>
+      </div>
+      <div id="desktopWrap">
+	<h2>Desktop</h2>
+	<iframe id="desktop"></iframe>
+      </div>
     </div>
 
     <ul class="custom-menu noHighlight">
@@ -39,7 +46,7 @@
 	  <h3 id="download" class="transitionFast advent">Download</h3>
 	</span>
 	<span>
-	  <h3 id="mobileShow" class="transitionFast advent">Mobile Preview</h3>
+	  <h3 id="mobileShow" class="transitionFast advent">Preview</h3>
 	</span>
 	<div id="navOrange"></div>
       </nav>
@@ -605,7 +612,7 @@
 				<table class="seven columns">
 				  <tr>
 				    <td class="centersmall padleft15 ">
-				      <img src="images/logo.gif" />
+				      <a href=""><img src="images/logo.gif" /></a>
 				    </td>
 				  </tr>
 				  <tr>
@@ -1051,6 +1058,7 @@
 			      </td>
 			    </tr>
 			  </table>
+			  <span id="loadTemplate"></span>
 			  
 
 			  <!-- container end below -->
