@@ -167,7 +167,6 @@ section#home .buttons {
     border-radius: 5px;
 }
 section#home .buttons:hover {
-    background: #888;
     background: #EB9532;
 }
 section#two .descriptBox {
@@ -177,6 +176,149 @@ section#two h5 {
     font-size: 1.3em;
     padding-bottom: 15px;
 }
+
+
+/*----------------Upload Template / Category Page------------------ */
+
+body#upload {    
+    font-family: 'Advent Pro', sans-serif;
+}
+body#upload form {
+    display: inline-block;
+}
+body#upload #wrap {
+    width: 800px;
+    margin: auto;
+}
+body#upload h1 {
+    text-align: center;
+    color: orange;
+    font-size: 7em;
+    margin-top: .2em;
+}
+body#upload h2 {
+    margin-top: .2em;
+    text-align: center;
+    color: orange;
+    -webkit-text-stroke-width: 1px;
+    font-size: 3em;
+}
+body#upload h3 {
+    font-size: 1.2em;
+}
+
+.uploadWrap {
+    vertical-align: top;
+    display: inline-block;
+    width: 300px;
+    border: 2px solid #EB9532;
+    margin-left: 30px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: 1em;
+    
+}
+.uploadCategory {
+    margin-top: 2em;
+}
+body#upload input {
+    margin-top: 1em;
+}
+.textInput {
+    width: 100%;
+    font-size: 1.2em;
+}
+.uploadCategory select {
+    margin-top: 1em;
+    width: 15em;
+}
+body#upload button {
+    width: 100%;
+    height: 4em;
+    border-radius: .5em;
+    border: none;
+    margin-top: 4em;
+    background: #EB9532;
+    color: white;
+}
+#uploadSubmit:hover {
+    background: orange;
+    cursor: pointer;
+}
+#uploadSubmit:focus {
+    outline: none;
+}
+img#uploadClose {
+    width: 40px;
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    right: 0;
+    margin-right: 50px;
+}
+#catSubmitConfirm,  {
+    font-size: 2em;
+    text-align: center;
+    margin-top: 1em;
+}
+#confirmWrap {
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    margin-top: 4em;
+    height: 3em;
+    display: none;
+    z-index: 100;
+}
+#submitConfirm {
+    left: 10%;
+    font-size: 10em;
+    z-index: 100;
+    margin-top: 1em;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*--------Builder Page-----------*/
 
@@ -269,13 +411,13 @@ img#icon:hover {
     position: fixed;
     right: 0;
     overflow-x: hidden; 
-    overflow-y: auto;
+    overflow-y: scroll;
     margin: 0 auto;
 }
 .template img {
     height: 10em;
     width: 100%;
-    opacity: .4;
+    opacity: .6;
     -webkit-transition: all .5s ease;
     -moz-transition: all .5s ease;
     -ms-transition: all .5s ease;
@@ -319,8 +461,17 @@ li.templateSlide {
     white-space: nowrap;
     margin-right: 10px;
 }
+#start {
+    vertical-align: top;
+}
 
-
+.clearfix:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
 .templateCategory * {
     font-family: 'Advent Pro', sans-serif;
     font-weight: normal;

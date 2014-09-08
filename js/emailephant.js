@@ -472,33 +472,47 @@ $(document).mousedown(function (e) {
 });
 
 //Choose the template -- Load file from template folder
-$(document).ready(function(){
-    $(".template").on("click", function(){
-	//Get location of file
-	var templateLocation = $(this).children('.templateLocation').val();
-	$.get(templateLocation, function(response) {
-	    var loadTemplate =  response;
-	    $("#loadTemplate").replaceWith(loadTemplate);
-	});
 
+$(document).on('click', '.template', function(){
+    //Get location of file
+    var templateLocation = $(this).children('.templateLocation').val();
+    $.get(templateLocation, function(response) {
+	var loadTemplate =  response;
+	$("#loadTemplate").replaceWith(loadTemplate);
     });
+
 });
 
-//Template Choice Slider
+
+/*-----Template Choice Slider----*/
+
+
+//remove left nav arrow on first category, remove right arrow for last category
+$(document).ready(function() {
+    $('.templateCatLeft').first().hide();
+    $('.templateCatRight').last().hide();
+});
+
+//Navigate through the template categories by arrows 
+
+//Forward
 var $slide = $("#start");
-$( ".templateCatRight" ).click(function() {
+$(document).on('click', ".templateCatRight", function() {
     $slide = $slide.next();
     $('.templateSlide').fadeOut(0);
     $slide.fadeIn(0);
 });
-$( ".templateCatLeft" ).click(function() {
+//Backward
+$(document).on('click', ".templateCatLeft", function() {
     $slide = $slide.prev();
     $('.templateSlide').fadeOut(0);
     $slide.fadeIn(0);
 });
 
 
-//Mobile Preview -- Iframe Injection
+//Iframe injection - Show Desktop/Mobile previews side by side
+
+//Mobile Preview 
 $('#mobileShow').click(function () {
     //open iframe links in new tab
     $('a').attr('target','_blank');
@@ -520,11 +534,9 @@ $('#mobileShow').click(function () {
     
     doc.writeln(content);
     doc.close();
-
-
 });
 
-//Show mobile preview
+//Dekstop preview
 $('#mobileShow').click(function () {
     $('#mobilePrev').fadeIn(300);
     //turn of contenteditable
@@ -558,4 +570,67 @@ $(document).keydown(function(e) {
 	//Stop links from opening in new tab
 	$('a').attr('target','');
     }
+});
+
+
+/*-----------AJAX Calls-----------*/
+
+//Load template category options (in upload.php) on load
+$(document).ready(function() {
+$('#loadTemplateCategories').load('template_categories.php');
+});
+
+//New template Category 
+$('#addCategory').on('submit', function (e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: 'new_category.php',
+        data: $(this).serialize(),
+        type: 'POST',
+        success: function (data) {
+	    console.log(data);
+	    $("#addCategory")[0].reset();
+	    $('#wrap, h1').fadeTo("slow", .2).delay(1000).fadeTo("slow", 1);
+	    $('#confirmWrap').fadeIn("slow").delay(1000).fadeOut();
+	    $('#submitConfirm').css('color', 'orange').text('Category Added!')
+	    //Reload template categories after new category added (no need to refresh browser)
+	    $('#loadTemplateCategories').load('template_categories.php');
+        },
+        error: function (data) {
+	    $('#wrap, h1').fadeTo("slow", .2).delay(1000).fadeTo("slow", 1);
+	    $('#confirmWrap').fadeIn("slow").delay(1000).fadeOut();
+	    $('#submitConfirm').css('color', 'red').text('Failed to Submit.')
+        }
+    });
+});
+
+//New Template
+$('#addTemplate').on('submit', function (e) {
+
+    e.preventDefault();
+
+    var formData = new FormData($(this)[0]);
+
+    $.ajax({
+	url: 'new_template.php',
+	data: formData,
+	type: 'POST',
+	cache: false,
+	contentType: false,
+	processData: false,
+	success: function (data) {
+		console.log(data);
+		$("#addTemplate")[0].reset();
+		$('#wrap, h1').fadeTo("slow", .2).delay(1000).fadeTo("slow", 1);
+		$('#confirmWrap').fadeIn("slow").delay(1000).fadeOut();
+		$('#submitConfirm').css('color', 'orange').text('Template Added!')
+	},
+	error: function (data) {
+	    $('#wrap, h1').fadeTo("slow", .2).delay(1000).fadeTo("slow", 1);
+	    $('#confirmWrap').fadeIn("slow").delay(1000).fadeOut();
+	    $('#submitConfirm').css('color', 'red').text('Failed to Submit.')
+	}
+    });
+
 });

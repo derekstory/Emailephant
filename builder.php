@@ -1,3 +1,9 @@
+<?php 
+session_start(); 
+include 'connect.php';
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"> 
   <head>
@@ -465,15 +471,13 @@
 			    </td>
 			  </tr>
 			</table>
+			<table><tr><td height="40"></td></tr></table>
 		      </center>
 		    </td>
 		  </tr>
 		</table>
 	      </body>
 	    </html>
-
-
-
 
 	  </div>
 
@@ -483,152 +487,43 @@
       <div id="templateChoice" class="noHighlight">
 	<div class="gallery clearfix">
 	  <ul>
+	  
+	    <?php
 
-	    <li class="templateSlide" id="start">
-	      <div class="templateCategory">
-		<div class="templateCatWrap">
-		  <h3 class="templateCatChoice" >Headers / Mastheads</h3>
-		</div>
-		<h3 class="templateCatRight transitionFast">&gt;</h3>
-	      </div>
-	      
-	      <div class="template">
-		<img src="template_images/header.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Header 1</div>
-		<input class="templateLocation" type="hidden" value="templates/header.html" />
-	      </div>
+            $loadCategory = mysql_query("SELECT * FROM `category`");
 
-	      <div class="template">
-		<img src="template_images/header.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Header 1</div>
-		<input class="templateLocation" type="hidden" value="templates/header.html" />
-	      </div>
+            while($category = mysql_fetch_array($loadCategory))
+            {
+            $categoryTitle = $category["category_name"];
 
-	      <div class="template">
-		<img src="template_images/header.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Header 1</div>
-		<input class="templateLocation" type="hidden" value="templates/header.html" />
-	      </div>
-	      <div class="template">
-		<img src="template_images/header.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Header 1</div>
-		<input class="templateLocation" type="hidden" value="templates/header.html" />
-	      </div>
+            echo '<li class="templateSlide" id="start">
+               <div class="templateCategory">
+                  <h3 class="templateCatLeft transitionFast">&lt;</h3>
+                  <div class="templateCatWrap">
+	            <h3 class="templateCatChoice">' . $categoryTitle . '</h3>
+                  </div>
+                  <h3 class="templateCatRight transitionFast">&gt;</h3>
+               </div>';
+	       
+	       $loadTemplate = mysql_query("SELECT * FROM `category`, `template` WHERE template_category = '$categoryTitle'  AND template_category = category_name");
 
-	      <div class="template">
-		<img src="template_images/header.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Header 1</div>
-		<input class="templateLocation" type="hidden" value="templates/header.html" />
-	      </div>
+               while($template = mysql_fetch_array($loadTemplate))
+               {
+               $templateTitle = $template["template_title"];
+               $templateFile = $template["template_file"];
+               $templateImage = $template["template_image"];
 
-	    </li>
+               echo '<div class="template">
+                  <img src="template_images/' . $templateImage . '" alt="" width="100%" />
+                  <div class="templateTitle transitionFast">' . $templateTitle . '</div>
+                  <input class="templateLocation" type="hidden" value="templates/' . $templateFile . '" />
+               </div>'; 
 
 
-	    <li class="templateSlide">
-	      <div class="templateCategory">
-		<h3 class="templateCatLeft transitionFast">&lt;</h3>
-		<div class="templateCatWrap">
-		  <h3 class="templateCatChoice">Body Options</h3>
-		</div>
-		<h3 class="templateCatRight transitionFast">&gt;</h3>
-	      </div>
-	      
-	      <div class="template">
-		<img src="template_images/body.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Body 1</div>
-		<input class="templateLocation" type="hidden" value="templates/body.html" />
-	      </div>
-
-	      <div class="template">
-		<img src="template_images/body.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Body 1</div>
-		<input class="templateLocation" type="hidden" value="templates/body.html" />
-	      </div>
-
-	      <div class="template">
-		<img src="template_images/body.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Body 1</div>
-		<input class="templateLocation" type="hidden" value="templates/body.html" />
-	      </div>
-
-	      <div class="template">
-		<img src="template_images/body.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Body 1</div>
-		<input class="templateLocation" type="hidden" value="templates/body.html" />
-	      </div>
-	      
-	    </li>
-
-	    <li class="templateSlide">
-	      
-	      <div class="templateCategory">
-		<h3 class="templateCatLeft transitionFast">&lt;</h3>
-		<div class="templateCatWrap">
-		  <h3 class="templateCatChoice">Body: Call to action</h3>
-		</div>
-		<h3 class="templateCatRight transitionFast">&gt;</h3>
-	      </div>
-
-	      <div class="template">
-		<img src="template_images/calltoaction.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Call to Action</div>
-		<input class="templateLocation" type="hidden" value="templates/calltoaction.html" />
-	      </div>
-	      
-	      <div class="template">
-		<img src="template_images/calltoaction.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Call to Action</div>
-		<input class="templateLocation" type="hidden" value="templates/calltoaction.html" />
-	      </div>
-	      
-	      <div class="template">
-		<img src="template_images/calltoaction.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Call to Action</div>
-		<input class="templateLocation" type="hidden" value="templates/calltoaction.html" />
-	      </div>
-	      
-	      <div class="template">
-		<img src="template_images/calltoaction.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Call to Action</div>
-		<input class="templateLocation" type="hidden" value="templates/calltoaction.html" />
-	      </div>
-	      
-	    </li>
-
-	    <li class="templateSlide">
-	      
-	      <div class="templateCategory">
-		<h3 class="templateCatLeft transitionFast">&lt;</h3>
-		<div class="templateCatWrap">
-		  <h3 class="templateCatChoice">Special</h3>
-		</div>
-	      </div>
-
-	      <div class="template">
-		<img src="template_images/specialbox.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Special Box</div>
-		<input class="templateLocation" type="hidden" value="templates/specialbox.html" />
-	      </div>
-	      
-	      <div class="template">
-		<img src="template_images/specialbox.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Special Box</div>
-		<input class="templateLocation" type="hidden" value="templates/specialbox.html" />
-	      </div>
-	      
-	      <div class="template">
-		<img src="template_images/specialbox.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Special Box</div>
-		<input class="templateLocation" type="hidden" value="templates/specialbox.html" />
-	      </div>
-	      
-	      <div class="template">
-		<img src="template_images/specialbox.png" alt="" width="100%" />
-		<div class="templateTitle transitionFast">Special Box</div>
-		<input class="templateLocation" type="hidden" value="templates/specialbox.html" />
-	      </div>
-	      
-	    </li>
+	       }
+	    echo '</li>';     
+	    }
+	    ?>
 
 	  </ul>
 	</div>
