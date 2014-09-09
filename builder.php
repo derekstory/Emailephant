@@ -20,8 +20,21 @@ include 'connect.php';
   </head>
   <body>
     
-    <div id="mobilePrev">
+  <!--Pull the email's file location and name from database-->
+  <?php
+          $loadEmail = mysql_query("SELECT * FROM `email` WHERE  email_id = " . mysql_real_escape_string($_GET['id']). "");
 
+	  while($email = mysql_fetch_array($loadEmail))	 	  
+	  {
+             $emailTitle= $email["email_title"];	
+             $emailFile= $email["email_file"];	
+	     //put file in hidden field - JS will load this file path into builder
+	     echo '<input type="hidden" value="' . $emailFile . '" id="emailLocation" />';
+	  }
+    ?>	  
+
+    <!--Iframe injection to provide mobile and desktop previews simultaniously -->
+    <div id="mobilePrev">
       <img id="mobileClose" src="https://cdn1.iconfinder.com/data/icons/CrystalClear/128x128/actions/button_cancel.png" />
       <div id="mobileWrap">
 	<h2 class="advent">Mobile</h2>
@@ -33,10 +46,12 @@ include 'connect.php';
       </div>
     </div>
 
+    <!--Context menu remplacement for template right clicks -->
     <ul class="custom-menu noHighlight">
       <li id="menuUp" class="menuUp">Section Up</li>
       <li id="menuDown" class="menuDown">Section Down</li>
       <li id="menuDelete">Delete Section</li>
+      <!--Confirm the delete is desired-->
       <li id="menuDelete" class="menuCancel deleteConfirmOption">Cancel</li>
       <li id="menuDelete" class="menuConfirm deleteConfirmOption">Confirm</li>
     </ul>
@@ -44,30 +59,37 @@ include 'connect.php';
     <div id="pageContain">
 
       <nav id="builderNav" class="bgblack">
-	<a href="index.html">
-	  <img src="img/icon.png" alt="Emailephant" id="icon" class="transitionFast" />
-	</a>
+	<img src="img/icon.png" alt="Emailephant" id="icon" class="transitionFast" />
+	<!--Save the email in current state --> 
+	<span>
+	  <h3 id="save" class="transitionFast advent">Save</h3>
+	</span>
+	<!--Download the email in current state --> 
 	<span>
 	  <h3 id="download" class="transitionFast advent">Download</h3>
 	</span>
+	<!--Show Preview-->
 	<span>
 	  <h3 id="mobileShow" class="transitionFast advent">Preview</h3>
 	</span>
 	<div id="navOrange"></div>
       </nav>
 
+      <!--Edit links-->
       <div id="editLink">
 	Text: <input id="linktext"/><br/>
 	Link: <input id="linkhref"/><br/>
 	<button id="linkEditDone">done</button>
       </div>
 
+      <!--Edit Images (no links)-->
       <div id="editImage">
 	Alt: <input id="imageAlt"/><br/>
 	Src:<input id="imageSrc"/><br/>
 	<button id="imageEditDone" >done</button>
       </div>
 
+      <!--Edit Images (with links)-->
       <div id="editImageLink">
 	Alt: <input id="linkedimageAlt"/><br/>
 	Src:<input id="linkedimageSrc"/><br/>
@@ -75,6 +97,7 @@ include 'connect.php';
 	<button id="linkedimageEditDone" >done</button>
       </div>
 
+      <!--Competely custom WYSIWYG editor-->
       <div id="builder">
 	<div id="emailPreview" class="transitionMedium">
 
@@ -128,31 +151,22 @@ include 'connect.php';
 	    <button class="editButton closeEdit">&#10003;</button>
 	  </div>
 
-	  <div id="emailCode">
 
+          <!--DO NOT REMOVE----- Email from file is loaded into the following empty div#emailCode-->	
+	  <div id="emailCode"></div>
 
-	  <?php
-	  $loadEmail = mysql_query("SELECT * FROM `email` WHERE  email_id = " . mysql_real_escape_string($_GET['id']). "");
-
-	  while($email = mysql_fetch_array($loadEmail))	 	  
-	  {
-          $emailTitle= $email["email_title"];	
-          $emailFile= $email["email_file"];	
-	  echo '<input type="hidden" value="' . $emailFile . '" id="emailLocation" />';
-	  }
-          ?>	   
-
-	  </div>
 
 	</div>
       </div>
 
+
+      <!--Template Choice Navigation -->
       <div id="templateChoice" class="noHighlight">
 	<div class="gallery clearfix">
 	  <ul>
 	  
 	    <?php
-
+	    //Load all categories
             $loadCategory = mysql_query("SELECT * FROM `category`");
 
             while($category = mysql_fetch_array($loadCategory))
@@ -168,6 +182,7 @@ include 'connect.php';
                   <h3 class="templateCatRight transitionFast">&gt;</h3>
                </div>';
 	       
+	       //Load the templates associated with that specific category
 	       $loadTemplate = mysql_query("SELECT * FROM `category`, `template` WHERE template_category = '$categoryTitle'  AND template_category = category_name");
 
                while($template = mysql_fetch_array($loadTemplate))
@@ -192,7 +207,6 @@ include 'connect.php';
       </div>
 
     </div>
-
 
     <script src="js/foundation.min.js"></script>
     <script src="js/emailephant.js"></script>

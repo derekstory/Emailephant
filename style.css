@@ -454,7 +454,7 @@ img#icon {
 img#icon:hover {  
     background: #ffffff;
 }
-#download {
+#save {
     display: inline;
     font-size: 1em;
     line-height: 3.1em;
@@ -469,7 +469,23 @@ img#icon:hover {
     border-right: 1px orange solid;
     border-left: 1px orange solid;
 }
-#download:hover, #mobileShow:hover {
+
+#download {
+    display: inline;
+    font-size: 1em;
+    line-height: 3.1em;
+    height: 3em;
+    z-index: 20;
+    color: #fff;
+    position: absolute;
+    background: #444;
+    left: 160px;
+    cursor: pointer;
+    padding: 0 10px 0 10px;
+    border-right: 1px orange solid;
+    border-left: 1px orange solid;
+}
+#save:hover, #download:hover, #mobileShow:hover {
     background: #111;
 }
 #mobileShow {
@@ -481,7 +497,7 @@ img#icon:hover {
     color: #fff;
     position: absolute;
     background: #444;
-    left: 193px;
+    left: 253px;
     cursor: pointer;
     padding: 0 10px 0 10px;
     border-right: 1px orange solid;

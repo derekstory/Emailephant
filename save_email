@@ -1,0 +1,20 @@
+<?php
+
+include 'connect.php';
+
+      if(isset($_POST['saveEmail']))
+      {
+      $handle = fopen("didthiswork.html", 'w+');
+      $saveEmail   =    $_POST['saveEmail'];
+
+      if(empty($saveEmail))
+         { 
+         header("HTTP/1.0 404 Not Found");
+         exit();
+         }
+         else
+         {
+
+         }
+      }
+?>    

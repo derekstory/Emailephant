@@ -576,7 +576,7 @@ $(document).keydown(function(e) {
 
 //Load template category options (in upload.php) on load
 $(document).ready(function() {
-$('#loadTemplateCategories').load('template_categories.php');
+    $('#loadTemplateCategories').load('template_categories.php');
 });
 
 //New template Category 
@@ -619,11 +619,11 @@ $('#addTemplate').on('submit', function (e) {
 	contentType: false,
 	processData: false,
 	success: function (data) {
-		console.log(data);
-		$("#addTemplate")[0].reset();
-		$('#wrap, h1').fadeTo("slow", .2).delay(1000).fadeTo("slow", 1);
-		$('#confirmWrap').fadeIn("slow").delay(1000).fadeOut();
-		$('#submitConfirm').css('color', 'orange').text('Template Added!')
+	    console.log(data);
+	    $("#addTemplate")[0].reset();
+	    $('#wrap, h1').fadeTo("slow", .2).delay(1000).fadeTo("slow", 1);
+	    $('#confirmWrap').fadeIn("slow").delay(1000).fadeOut();
+	    $('#submitConfirm').css('color', 'orange').text('Template Added!')
 	},
 	error: function (data) {
 	    $('#wrap, h1').fadeTo("slow", .2).delay(1000).fadeTo("slow", 1);
@@ -634,6 +634,36 @@ $('#addTemplate').on('submit', function (e) {
 
 });
 
+
+
+
+
+
+/*--------Load Email from file into builder--------*/
+$(document).ready(function() {
+    var emailLocation = $('#emailLocation').val();
+    $('#emailCode').load(emailLocation);
+});
+
+/*--------Overwrite email file when save is clicked--------*/
+$('#save').on('click', function (e) {
+
+    var saveEmail = $('#emailCode').html();
+    var emailLocation = $('#emailLocation').val();
+
+    $.ajax({
+	url: 'save_email.php',
+	data: {saveEmail : saveEmail, emailLocation : emailLocation},
+	type: 'POST',
+	success: function (data) {
+	    console.log(data);
+	    
+	},
+	error: function (data) {
+	}
+    });
+
+});
 
 
 /*----------------Options Page-----------*/
@@ -666,8 +696,4 @@ $(document).ready(function() {
 });
 
 
-/*--------Load Email from file into builder--------*/
-$(document).ready(function() {
-    var emailLocation = $('#emailLocation').val();
-    $('#emailCode').load(emailLocation);
-});
+
