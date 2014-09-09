@@ -3,7 +3,6 @@ session_start();
 include 'connect.php';
 ?>
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"> 
   <head>
@@ -20,11 +19,13 @@ include 'connect.php';
     <link href='http://fonts.googleapis.com/css?family=Advent+Pro:200,700,400' rel='stylesheet' type='text/css' />
   </head>
   <body id="upload">
+
     <div id="confirmWrap">
       <div id="submitConfirm"></div>
     </div>
-
-      <img id="uploadClose" src="https://cdn1.iconfinder.com/data/icons/CrystalClear/128x128/actions/button_cancel.png" />
+      <a href="client_options.php">
+           <img id="uploadClose" src="http://iconizer.net/files/Brightmix/orig/monotone_close_exit_delete.png" />
+      </a> 
 
       <h1>USAA</h1>
     <div id="wrap">
