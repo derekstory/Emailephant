@@ -23,13 +23,14 @@ include 'connect.php';
     <div id="confirmWrap">
       <div id="submitConfirm"></div>
     </div>
-      <a href="client_options.php">
-           <img id="newEmailClose" src="http://iconizer.net/files/Brightmix/orig/monotone_close_exit_delete.png" />
-      </a> 
+
+    <a href="client_options.php">
+       <img id="newEmailClose" src="http://iconizer.net/files/Brightmix/orig/monotone_close_exit_delete.png" />
+    </a> 
 
     <h1>Create New USAA Email</h1>
-    <div id="wrap">
 
+    <div id="wrap">
       <form method="POST" action="" name="addEmail" id="addEmail">
 	<section class="newEmailWrap">
 	  <div class="newEmailCategory">
@@ -41,8 +42,6 @@ include 'connect.php';
 	</section>
       </form>
     </div>
-
-
 
     <?php
 
@@ -59,22 +58,23 @@ include 'connect.php';
          }
          else
          {
-         
          $sql = "INSERT INTO
                                                              email(email_title,
-							           email_file,
+							            email_file,
                                                                   email_client)
 
                          VALUES('" . mysql_real_escape_string($emailTitle) . "',
                                           'email_builds/$date/$emailTitle.html',
-                              '" . mysql_real_escape_string($emailClient) . "')";
+                             '" . mysql_real_escape_string($emailClient) . "')";
      
 		    mysql_query($sql);
+
 		    //Check if folder with this date exist - if not, create it
 		    if (!file_exists('email_builds/'.$date)) 
 		    {
 		    mkdir('email_builds/'.$date, 0777, true);
 		    }
+
 		    //Copy the starter file, move it to new directory, rename it to the naming convention  
                     $file = 'email_starter/usaa_starter_responsive.html';
                     $newfile = 'email_builds/'.$date.'/'.$emailTitle.'.html';
@@ -82,13 +82,13 @@ include 'connect.php';
 		    {
                     echo "failed to copy";
                     }
+
 		    //grab the db id, redirect to the build page for new email
 		    $email_id = mysql_insert_id();	
 		    header('Location: builder.php?id=' . $email_id . '');
           }
       }
     ?>    
-
 
     <script src="js/foundation.min.js"></script>
     <script src="js/emailephant.js"></script>

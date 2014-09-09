@@ -480,7 +480,6 @@ $(document).on('click', '.template', function(){
 	var loadTemplate =  response;
 	$("#loadTemplate").replaceWith(loadTemplate);
     });
-
 });
 
 
@@ -664,4 +663,11 @@ $(document).on("click", "#clientOptions a, #upload a", function () {
 //fadein body
 $(document).ready(function() {
     $('body').delay(100).fadeIn(1200);
+});
+
+
+/*--------Load Email from file into builder--------*/
+$(document).ready(function() {
+    var emailLocation = $('#emailLocation').val();
+    $('#emailCode').load(emailLocation);
 });
