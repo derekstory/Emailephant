@@ -20,7 +20,7 @@ window.onload = function() {
     //Turn prompt on (uncomment next line)
     //window.onbeforeunload = confirmOnPageExit;
     //Turn prompt off (comment next line)
-    window.onbeforeunload = null;
+    //window.onbeforeunload = null;
 };
 
 
@@ -657,9 +657,14 @@ $('#save').on('click', function (e) {
 	type: 'POST',
 	success: function (data) {
 	    console.log(data);
-	    
+	    $('#pageContain').fadeTo("slow", .2).delay(1000).fadeTo("slow", 1);
+	    $('#confirmWrap').fadeIn("slow").delay(1000).fadeOut();
+	    $('#saveConfirm').css('color', 'orange').text('Saved Email!')
 	},
 	error: function (data) {
+	    $('#pageContain').fadeTo("slow", .2).delay(1000).fadeTo("slow", 1);
+	    $('#confirmWrap').fadeIn("slow").delay(1000).fadeOut();
+	    $('#saveConfirm').css('color', 'red').text('Save Fail!')
 	}
     });
 
@@ -696,4 +701,13 @@ $(document).ready(function() {
 });
 
 
-
+/*----------Browse page: Expand month to show emails---------*/
+$('.emailMonth').click(function() {
+    var el = $(this).next('.emailChoice');
+    curHeight = el.height(),
+    autoHeight = el.css('height', 'auto').height();
+    //slide the height down (animate)
+    el.height(curHeight).animate({height: autoHeight}, 300);
+    //hide other month choices
+    $('.emailChoice').css('height', '0px');
+});

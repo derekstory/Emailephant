@@ -8,7 +8,7 @@ include 'connect.php';
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Emailephant: Free Email Builder</title>
+    <title>Emailephant: Email Builder</title>
     <meta name="description" content="Emailephant is the most flexible email builder available. Quickly build emails using modules through our templates or your own custom code." />
     <link href="img/favicon.png" rel="shortcut icon" />
 
@@ -19,7 +19,6 @@ include 'connect.php';
     <link href='http://fonts.googleapis.com/css?family=Advent+Pro:200,700,400' rel='stylesheet' type='text/css' />
   </head>
   <body>
-    
   <!--Pull the email's file location and name from database-->
   <?php
           $loadEmail = mysql_query("SELECT * FROM `email` WHERE  email_id = " . mysql_real_escape_string($_GET['id']). "");
@@ -32,6 +31,10 @@ include 'connect.php';
 	     echo '<input type="hidden" value="' . $emailFile . '" id="emailLocation" />';
 	  }
     ?>	  
+    <div id="confirmWrap">
+    	 <h2 id="saveConfirm" class="advent"></h2>	
+    </div>	
+
 
     <!--Iframe injection to provide mobile and desktop previews simultaniously -->
     <div id="mobilePrev">
@@ -59,7 +62,7 @@ include 'connect.php';
     <div id="pageContain">
 
       <nav id="builderNav" class="bgblack">
-	<img src="img/icon.png" alt="Emailephant" id="icon" class="transitionFast" />
+	<a href="client_options"><img src="img/icon.png" alt="Emailephant" id="icon" class="transitionFast" /></a>
 	<!--Save the email in current state --> 
 	<span>
 	  <h3 id="save" class="transitionFast advent">Save</h3>

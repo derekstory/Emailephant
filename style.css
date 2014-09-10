@@ -271,7 +271,7 @@ img#uploadClose {
     display: none;
     z-index: 100;
 }
-#submitConfirm {
+#submitConfirm, #saveConfirm {
     left: 10%;
     font-size: 10em;
     z-index: 100;
@@ -285,6 +285,7 @@ img#uploadClose {
 #clientOptions {
     margin: 0;
     font-family: 'Advent Pro', sans-serif;
+    padding-bottom: 3em;
 }
 #clientOptions a {
     text-decoration: none;
@@ -340,7 +341,7 @@ body#newEmail form {
     top: 0;
     margin-right: 30px;
     margin-top: 20px;
-    width: 4em;
+    width: 3em;
 }
 body#newEmail #wrap {
     width: 300px;
@@ -401,31 +402,70 @@ body#newEmail button {
     outline: none;
 }
 
+/*--------Browse Emails Page-------*/
+body#browse #wrap {
+    width: 800px;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 2em;
+    margin: auto;
+    margin-top: 1em;
+}
+body#browse a {
+    text-decoration: none;
+}
+body#browse h1 {
+    margin-top: .5em;
+    margin-bottom: .5em;
+    color: #333;p
+    font-size: 4em;
+    text-align: center;
+}
 
+body#browse h2 {
+    color: #333;
+    font-size: 3em;
+    padding-top: 1em;
+    cursor: pointer;
+}
+body#browse h2:hover {
+    color: #999;
+}
 
+body#browse h3 {
+    font-size: 2em;
+}
+body#browse h4 {
+    margin-top: .2em;
+    font-size: 1em;
+}
+body#browse .emailChoice {
+    margin-top: .8em;
+    margin-left: 3em;
+    color: #555;
+    height: 0;
+    overflow: hidden;
+}
+body#browse .emailChoice a:hover * {
+    color: orange;
+}
 
+body#browse .emailChoice  h3 {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    color: #555;
+}
+body#browse .emailChoice  h4 {
+    color: #888;
+    margin-bottom: 2em;
+}
+img#browseClose {
+    width: 40px;
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    right: 0;
+    margin-right: 50px;
+}
 
 /*--------Builder Page-----------*/
 
@@ -515,7 +555,7 @@ img#icon:hover {
     height: 100%;
 }
 #emailPreview {
-    width: 75%;
+    width: 73%;
     height: 94%;
     background: #333333;
     border: 2px solid #EB9532;

@@ -8,7 +8,7 @@ include 'connect.php';
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Emailephant: Free Email Builder</title>
+    <title>Emailephant: Email Builder</title>
     <meta name="description" content="Emailephant is the most flexible email builder available. Quickly build emails using modules through our templates or your own custom code." />
     <link href="img/favicon.png" rel="shortcut icon" />
 
