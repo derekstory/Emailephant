@@ -707,7 +707,7 @@ $('.emailMonth').click(function() {
     curHeight = el.height(),
     autoHeight = el.css('height', 'auto').height();
     //slide the height down (animate)
-    el.height(curHeight).animate({height: autoHeight}, 300);
+    el.height(curHeight).animate({height: autoHeight}, 100);
     //hide other month choices
     $('.emailChoice').css('height', '0px');
 });

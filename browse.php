@@ -34,7 +34,7 @@ include 'connect.php';
                $date = $date["email_date"];
 
                echo '<h2 class="advent transitionFast emailMonth">' . $date .'</h2>';
-	       echo '<div class="emailChoice">';
+	       echo '<div class="emailChoice transitionFast">';
 	       //Load emails created within that month
                $loadEmails = mysql_query("SELECT * FROM email WHERE DATE_FORMAT(email_date, '%m-%Y') = '$date' "); 
 	       
@@ -45,8 +45,8 @@ include 'connect.php';
                    $emailID = $emailByDate["email_id"];	
 
                    echo '<a href="builder.php?id=' . $emailID . '">
-   		               <h3 class="advent transitionFast">' . $emailTitle .'</h3>
-		               <h4 class="advent transitionFast">' . $emailDate .'</h4>
+   		               <h3 class="advent">' . $emailTitle .'</h3>
+		               <h4 class="advent">' . $emailDate .'</h4>
 	                 </a>';
 	       }
 	    echo '</div>';

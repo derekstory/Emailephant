@@ -484,6 +484,13 @@ nav#builderNav {
     top: 0;
     z-index: 20;
 }
+nav#builderNav #emailTitle {
+    color: white;
+    text-align: right;
+    font-size: 1.5em;
+    line-height: 2em;
+    margin-right: 1em;
+}
 img#icon {
     height: 100%;
     margin-left: 1em;
