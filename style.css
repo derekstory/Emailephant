@@ -561,6 +561,22 @@ img#icon:hover {
 #emailCode {
     height: 100%;
 }
+@media print {
+    nav {
+	display: none;
+    }
+    #templateChoice {
+	display: none;
+    }
+    #emailCode {
+        height: 100%;
+        width: 900px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+    }
+}
 #emailPreview {
     width: 73%;
     height: 94%;
