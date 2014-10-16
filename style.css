@@ -928,9 +928,11 @@ button:focus {
 table a {
     text-decoration: underline;
 }
+/* 
 table tr td {
     line-height: 0 !important;
-}
+} 
+*/
 sup {
     font-size: 60%;
     line-height: 1;
