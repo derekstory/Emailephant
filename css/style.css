@@ -1,0 +1,1041 @@
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    display: none;
+}
+
+
+/*----------------------- GENERAL STYLES - reusable - classes only ------------------*/ 
+
+/* ----- Fonts ------*/
+.advent { font-family: 'Advent Pro', sans-serif;}
+p, .arial { Arial, Helvetica, sans-serif}
+
+
+/* background color*/
+.bgblack { background: #333333;}
+.bgorange { background: #EB9532;}
+.bgwhite { background: white;}
+
+/* font color */
+.black {color: #333333;}
+.grey {color: #999999;}
+.white {color: #ffffff;}
+.orange { color: #EB9532;}
+
+/* ----- Header Styles ------*/
+h1 {font-size: 4em;} 
+h2 {font-size: 3em;}
+h3 {font-size: 2.5em;}
+h4 {font-size: 2em;}
+h5 {font-size: 1.5em;}
+h6 {font-size: 1.2dem;}
+
+/* Font Style */
+.nowrap {white-space: nowrap;}
+.bold {font-weight: bolder;}
+.underline {text-decoration: underline;}
+.center {text-align: center;}
+.uppercase {text-transform: uppercase;}
+
+/* CSS Transitions */
+.transitionFast{
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease; 
+}
+.transitionMedium{
+    -webkit-transition: all .6s ease;
+    -moz-transition: all .6s ease;
+    -ms-transition: all .6s ease;
+    -o-transition: all .6s ease;
+    transition: all .6s ease; 
+}
+.transitionSlow{
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease; 
+}
+
+/*Prevent the template selector from being highlighted when navigating*/
+.noHighlight{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* Orange gradient bar below nav */
+#navOrange {
+    z-index: 30;
+    height: 5px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background: #EB9532;
+    /* IE10 Consumer Preview */ 
+    background-image: -ms-linear-gradient(left, #FFFFFF 10%, #EB9532 20%, #FFFFFF 30%, #EB9532 40%, #FFFFFF 50%, #EB9532 60%, #FFFFFF 70%, #EB9532 80%, #FFFFFF 90%, #EB9532 100%);
+
+    /* Mozilla Firefox */ 
+    background-image: -moz-linear-gradient(left, #FFFFFF 10%, #EB9532 20%, #FFFFFF 30%, #EB9532 40%, #FFFFFF 50%, #EB9532 60%, #FFFFFF 70%, #EB9532 80%, #FFFFFF 90%, #EB9532 100%);
+
+    /* Opera */ 
+    background-image: -o-linear-gradient(left, #FFFFFF 10%, #EB9532 20%, #FFFFFF 30%, #EB9532 40%, #FFFFFF 50%, #EB9532 60%, #FFFFFF 70%, #EB9532 80%, #FFFFFF 90%, #EB9532 100%);
+
+    /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(.1, #FFFFFF), color-stop(0.2, #EB9532), color-stop(.3, #FFFFFF), color-stop(.4, #EB9532), color-stop(.5, #FFFFFF), color-stop(.6, #EB9532), color-stop(0.7, #FFFFFF), color-stop(0.8, #EB9532), color-stop(0.9, #FFFFFF), color-stop(1, #EB9532));
+
+    /* Webkit (Chrome 11+) */ 
+    background-image: -webkit-linear-gradient(left, #FFFFFF 10%, #EB9532 20%, #FFFFFF 30%, #EB9532 40%, #FFFFFF 50%, #EB9532 60%, #FFFFFF 70%, #EB9532 80%, #FFFFFF 90%, #EB9532 100%);
+
+    /* W3C Markup, IE10 Release Preview */ 
+    background-image: linear-gradient(to right, #FFFFFF 10%, #EB9532 20%, #FFFFFF 30%, #EB9532 40%, #FFFFFF 50%, #EB9532 60%, #FFFFFF 70%, #EB9532 80%, #FFFFFF 90%, #EB9532 100%);
+}
+
+
+
+/*------------------SPECIFIC PAGE STYLES------------------*/
+
+/*--------Home (Index.html) Page----------*/
+section#home {
+    padding-top: 5em;
+    padding-bottom: 2em;
+}
+section#home img.cartoon {
+    max-width: 500px;
+    width: 100%;
+    opacity: .6;
+    padding: 1em;
+}
+section#home h1 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+section#home .row, section#two .row {
+    max-width: 80em;
+    position: relative;
+    margin-top: 10px;
+    padding: 1em;
+}
+nav#homeNav {
+    position: fixed !important;
+    width: 100%;
+    z-index: 20;
+    height: 50px;
+}
+nav#homeNav li#navlogo {
+    width: 4.8em !important;
+    opacity: 0;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+nav#homeNav a h6:hover {
+    text-decoration: underline;
+}
+section#homeBar {
+    min-height: 40px;
+    background: #EB9532;
+    width: 100%;
+    margin-bottom: 10px;
+    color: white;
+}
+section#homeBar span {
+    line-height: 40px;    
+}
+section#homeBar a {
+    color: white;
+    opacity: .8;
+}
+section#homeBar a:hover {
+    text-decoration: underline;
+}
+section#home .buttons {
+    height: 40px;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+    color: white;
+    line-height: 40px;
+    border-radius: 5px;
+}
+section#home .buttons:hover {
+    background: #EB9532;
+}
+section#two .descriptBox {
+    padding: 1em;
+}
+section#two h5 {
+    font-size: 1.3em;
+    padding-bottom: 15px;
+}
+
+
+/*----------------Upload Template / Category Page------------------ */
+
+div#upload {    
+    font-family: 'Advent Pro', sans-serif;
+}
+div#upload form {
+    display: inline-block;
+}
+div#upload #wrap {
+    width: 800px;
+    margin: auto;
+}
+div#upload h1 {
+    text-align: center;
+    color: orange;
+    font-size: 7em;
+    margin-top: .2em;
+}
+div#upload h2 {
+    margin-top: .2em;
+    text-align: center;
+    color: orange;
+    -webkit-text-stroke-width: 1px;
+    font-size: 3em;
+}
+div#upload h3 {
+    font-size: 1.2em;
+}
+
+.uploadWrap {
+    vertical-align: top;
+    display: inline-block;
+    width: 300px;
+    border: 2px solid #EB9532;
+    margin-left: 30px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: 1em;
+    
+}
+.uploadCategory {
+    margin-top: 2em;
+}
+div#upload input {
+    margin-top: 1em;
+}
+.textInput {
+    width: 100%;
+    font-size: 1.2em;
+}
+.uploadCategory select {
+    margin-top: 1em;
+    width: 15em;
+}
+div#upload button {
+    width: 100%;
+    height: 4em;
+    border-radius: .5em;
+    border: none;
+    margin-top: 4em;
+    background: #EB9532;
+    color: white;
+}
+#uploadSubmit:hover {
+    background: orange;
+    cursor: pointer;
+}
+#uploadSubmit:focus {
+    outline: none;
+}
+img#uploadClose {
+    width: 40px;
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    right: 0;
+    margin-right: 50px;
+}
+#catSubmitConfirm,  {
+    font-size: 2em;
+    text-align: center;
+    margin-top: 1em;
+}
+#confirmWrap {
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    margin-top: 4em;
+    height: 3em;
+    display: none;
+    z-index: 100;
+}
+#submitConfirm, #saveConfirm {
+    left: 10%;
+    font-size: 10em;
+    z-index: 100;
+    margin-top: 1em;
+    text-align: center;
+}
+
+
+/*---------------Client Options------------------*/
+
+#clientOptions {
+    margin: 0;
+    font-family: 'Advent Pro', sans-serif;
+    padding-bottom: 3em;
+}
+#clientOptions a {
+    text-decoration: none;
+}
+#clientOptions section {
+    width: 700px;
+    margin: auto;
+    margin-top: 4em;
+}
+
+#clientOptions h1 {
+    margin-top: .2em;
+    font-size: 6em;
+    color: orange;
+    text-align: center;
+    margin-bottom: .2em;
+}
+
+#clientOptions .clientChoice {
+    cursor: pointer;
+    margin-top: 1em;
+    border-radius: 1em;
+    height: 200px;
+    width: 100%;
+    border: 2px solid orange;
+    color: #333;
+}
+#clientOptions .clientChoice:hover {
+    background: #333;
+    border-radius: 2em;
+}
+.clientChoice h2{
+    text-align: center;
+    line-height: 200px;
+    font-size: 4em;
+}
+#clientOptions .clientChoice:hover h2 {
+    color: white;
+}
+
+/*---------New Emails----------*/
+
+
+
+div#newEmail {    
+    font-family: 'Advent Pro', sans-serif;
+}
+div#newEmail form {
+    margin-top: 1em;
+}
+#newEmailClose {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 30px;
+    width: 3em;
+}
+div#newEmail #wrap {
+    width: 300px;
+    margin: auto;
+}
+div#newEmail h1 {
+    text-align: center;
+    color: orange;
+    font-size: 5em;
+    margin-top: .5em;
+}
+div#newEmail h2 {
+    margin-top: .2em;
+    text-align: center;
+    color: orange;
+    -webkit-text-stroke-width: 1px;
+    font-size: 3em;
+}
+div#newEmail h3 {
+    font-size: 1.2em;
+}
+
+.newEmailWrap {
+    margin: auto;
+    display: block;
+    vertical-align: top;
+    width: 100%;
+    border: 2px solid #EB9532;
+    padding: 1em;
+    
+}
+.newEmailCategory {
+    margin-top: 2em;
+}
+div#newEmail input {
+    margin-top: 1em;
+}
+
+.newEmailCategory select {
+    margin-top: 1em;
+    width: 15em;
+}
+div#newEmail button {
+    width: 100%;
+    height: 4em;
+    border-radius: .5em;
+    border: none;
+    margin-top: 4em;
+    background: #EB9532;
+    color: white;
+}
+#newEmailSubmit:hover {
+    background: orange;
+    cursor: pointer;
+}
+#newEmailSubmit:focus {
+    outline: none;
+}
+
+/*--------Browse Emails Page-------*/
+div#browse #wrap {
+    width: 800px;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 2em;
+    margin: auto;
+    margin-top: 1em;
+}
+div#browse a {
+    text-decoration: none;
+}
+div#browse h1 {
+    margin-top: .5em;
+    margin-bottom: .5em;
+    color: #333;p
+    font-size: 4em;
+    text-align: center;
+}
+
+div#browse h2 {
+    color: #333;
+    font-size: 3em;
+    padding-top: 1em;
+    cursor: pointer;
+}
+div#browse h2:hover {
+    color: #999;
+}
+
+div#browse h3 {
+    font-size: 2em;
+}
+div#browse h4 {
+    margin-top: .2em;
+    font-size: 1em;
+}
+div#browse .emailChoice {
+    margin-top: .8em;
+    margin-left: 3em;
+    color: #555;
+    height: 0;
+    overflow: hidden;
+}
+div#browse .emailChoice a:hover * {
+    color: orange;
+}
+
+div#browse .emailChoice  h3 {
+
+    color: #555;
+}
+div#browse .emailChoice  h4 {
+    color: #888;
+    margin-bottom: 2em;
+}
+img#browseClose {
+    width: 40px;
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    right: 0;
+    margin-right: 50px;
+}
+
+/*--------Builder Page-----------*/
+
+#pageContain {
+    min-width: 980px;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+/*Nav on builder page*/
+nav#builderNav {
+    width: 100%;
+    min-width: 700px;
+    margin: 0;
+    height: 3.1em;
+    position: fixed;
+    top: 0;
+    z-index: 20;
+}
+nav#builderNav #emailTitle {
+    color: white;
+    text-align: right;
+    font-size: 1.5em;
+    line-height: 2em;
+    margin-right: 1em;
+}
+img#icon {
+    height: 100%;
+    margin-left: 1em;
+    padding-left: .5em;
+    padding-right: .5em;
+    position: absolute;
+}
+img#icon:hover {  
+    background: #ffffff;
+}
+#save {
+    display: inline;
+    font-size: 1em;
+    line-height: 3.1em;
+    height: 3em;
+    z-index: 20;
+    color: #fff;
+    position: absolute;
+    background: #444;
+    left: 100px;
+    cursor: pointer;
+    padding: 0 10px 0 10px;
+    border-right: 1px orange solid;
+    border-left: 1px orange solid;
+}
+
+#download {
+    display: inline;
+    font-size: 1em;
+    line-height: 3.1em;
+    height: 3em;
+    z-index: 20;
+    color: #fff;
+    position: absolute;
+    background: #444;
+    left: 160px;
+    cursor: pointer;
+    padding: 0 10px 0 10px;
+    border-right: 1px orange solid;
+    border-left: 1px orange solid;
+}
+#save:hover, #download:hover, #mobileShow:hover {
+    background: #111;
+}
+#mobileShow {
+    display: inline;
+    font-size: 1em;
+    line-height: 3.1em;
+    height: 3em;
+    z-index: 20;
+    color: #fff;
+    position: absolute;
+    background: #444;
+    left: 253px;
+    cursor: pointer;
+    padding: 0 10px 0 10px;
+    border-right: 1px orange solid;
+    border-left: 1px orange solid;
+}
+
+/* THE EMAIL BUILDER TOOL */
+#builder {
+    min-width: 980px;
+    width: 100%;
+    margin-top: 3em;
+    position: relative;
+}
+#emailCode {
+    height: 100%;
+}
+@media print {
+    nav {
+	display: none;
+    }
+    #templateChoice {
+	display: none;
+    }
+    #emailCode {
+        height: 100%;
+        width: 900px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+    }
+}
+#emailPreview {
+    width: 73%;
+    height: 94%;
+    background: #333333;
+    border: 2px solid #EB9532;
+    border-right: 1px solid #EB9532;
+    padding: 0;
+    overflow: auto;
+    position: fixed;
+}
+#templateChoice {
+    width: 27%;
+    height: 94%;
+    background: #333333;
+    border: 2px solid #EB9532;
+    border-left: 0;
+    padding: .7em;
+    position: fixed;
+    right: 0;
+    overflow-x: hidden; 
+    overflow-y: scroll;
+    margin: 0 auto;
+}
+.template img {
+    height: 10em;
+    width: 100%;
+    opacity: .6;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+}
+.template:hover > img {
+    opacity: 1;
+    
+}
+@media only screen and (max-width: 980px){
+
+    #pageContain, #builder { 
+	width: 1000px;
+    }
+    #templateChoice, #emailPreview {
+	height: 700px !important;
+	position: relative;
+    }
+    #templateChoice {
+	width: 290px;
+	float: right;
+    }
+    #emailPreview {
+	width: 680px;
+	float: left;
+    }
+}
+.gallery ul{
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 200%;
+    overflow-x: hidden;
+    white-space:nowrap;
+}
+li.templateSlide {
+    width: 50%;
+    list-style: none;
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+#start {
+    vertical-align: top;
+}
+
+.clearfix:after {
+    content: " "; /* Older browser do not support empty content */
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+.templateCategory * {
+    font-family: 'Advent Pro', sans-serif;
+    font-weight: normal;
+}
+.templateCategory {
+    z-index: 50;
+    width: 100%;
+    margin: 0;
+    height: 60px;
+    display: inline-block;
+    position: relative;
+}
+.templateCategory .templateCatWrap {
+    display: inline-block;
+    width: 100%;
+    float: left;
+}
+.templateCatWrap h3.templateCatChoice {
+    text-align: center;
+    color: white;
+    font-size: 1.5em;
+    line-height: 60px;
+}
+.templateCategory h3.templateCatLeft {
+    position: absolute;
+    display: inline-block;
+    color: white;
+    left: 10px;
+    float: left;
+    cursor: pointer;
+    color: orange;
+}
+.templateCategory h3.templateCatRight {
+    position: absolute;
+    color: white;
+    right: 10px;
+    display: inline-block;
+    cursor: pointer;
+    color: orange;
+}
+h3.templateCatRight:hover, h3.templateCatLeft:hover {
+    color: white;
+}
+.template {
+    height: 30%;
+    width: 100%;
+    margin-top: .7em;
+    border: 2px solid #EB9532;
+    position: relative;
+    overflow: hidden;
+}
+
+.template:hover {
+    opacity: 1;
+    border: 3px solid #EB9532;
+    cursor: pointer;
+}
+.templateTitle {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    background: rgba(0,0,0,.7);
+    color: white;
+}
+div font{
+    cursor: pointer;
+}
+.template:hover > .templateTitle {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background: rgba(0,0,0,.8);
+}
+.editArea {
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+    height: 20px;
+}
+.templateSection {  
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+
+}
+.templateSection:hover {
+    cursor: pointer !important;
+}
+.editArea:focus {
+    opacity: 1 !important;
+    outline: 1px solid orange;
+}
+.editArea:focus, .editArea:focus font:hover {
+    cursor: text !important;
+}
+.editArea:focus, .editArea:focus a font:hover {
+    cursor: pointer !important;
+}
+
+/* Side Text Editor */
+.close {
+    display: none;
+    background: #EB9532;
+    overflow: hidden;
+    white-space: nowrap;
+    float: right;
+}
+.editButton:hover {
+    background: orange;
+}
+.editButton {
+    display: block;
+    background: #EB9532;
+    margin: auto;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 60px !important;
+    height: 30px;
+    line-heiht: 40px;
+    font-size: 12px;
+    padding: 0;
+    outline: 0 solid transparent;
+    color: white;
+    border: none;
+}
+#editor {
+    z-index: 50;
+    width: 0;
+    position: fixed;
+    top: 55px;
+    overflow: hidden;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+#buttonBold {
+    width: 10px;
+    font-size: .8em;
+}
+button:focus {
+    background: orange;
+}
+
+/*Insert link address box*/
+#editLink, #editImage, #editImageLink {
+    border: 2px solid orange;
+    padding: 10px;;
+    background-color: rgba(0,0,0,.8);
+    color: white;
+    width: 300px;
+    height: auto;
+    margin-top: 120px;
+    position: absolute;
+    top: 100;
+    left: 0;
+    z-index: 40;
+    border-radius: 10px;
+}
+#linkEditDone, #imageEditDone, #linkedimageEditDone {
+    margin-top: 10px;
+    margin-left: 45px;
+    padding: 5px;
+    width: 80px;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 5px;
+    display: block;
+    background: orange;
+}
+#editLink input, #editImage input, #editImageLink input {
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    height: 30px;
+}
+#editImageLink #linkedimageAlt,  #editImageLink #linkedimageSrc  {
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    height: 30px;
+}
+#editImageLink #linkedimageLink {
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 14px;
+    height: 30px;
+}
+#editLink input:focus, #editImage input:focus {
+    outline: 2px solid orange;
+}
+
+/*Expandable Menu options*/
+#colorChoiceWrap, #alignChoiceWrap, #fontsizeChoiceWrap, #symbolChoiceWrap, #linkChoiceWrap {
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.colorChoiceActive, .linkChoiceActive {
+    height: 155px !important;
+}
+.alignChoiceActive {
+    height: 123px !important;
+}
+.fontsizeChoiceActive {
+    height: 215px !important;
+}
+.symbolChoiceActive {
+    height: 123px !important;
+}
+
+.fontsizeChoice, .alignChoice, .symbolChoice {
+    background: grey;
+}
+
+/*Editor Color Choice Buttons*/
+.colorBlack, .linkblack {
+    background: #000000;
+}
+.colorBlack:hover, .linkblack:hover {
+    opacity: .7;
+    background: #000000;
+}
+.colorBlue, .linkblue {
+    background: #00365b;
+}
+.colorBlue:hover, .linkblue:hover {
+    background: #00365b;
+    opacity: .7;
+}
+.colorWhite, .linkwhite {
+    background: #ffffff;
+    color: black;
+}
+.colorWhite:hover, .linkwhite:hover {
+    background: #ffffff;
+    opacity: .7;
+    color: black;
+}
+.colorGold, .linkgold {
+    background: #C1A04D;
+}
+.colorGold:hover, .linkgold:hover {
+    background: #C1A04D;
+    opacity: .7;
+}
+.colorGrey, .linkgrey {
+    background: #3d3d3d;
+}
+.colorGrey:hover, .linkgrey:hover {
+    background: #3d3d3d;
+    opacity: .7;
+}
+/*Email Styles Preview styles (prevents unwanted behavior not present in email clients)*/
+table a {
+    text-decoration: underline;
+}
+/* 
+   table tr td {
+   line-height: 0 !important;
+   } 
+   */
+sup {
+    font-size: 60%;
+    line-height: 1;
+    vertical-align: super;
+}
+font:hover {
+    cursor: pointer !important;
+}
+
+
+.custom-menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    background: orange;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    color: #333;
+    border-radius: 5px;
+    color: white;
+}
+.custom-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+.custom-menu li:hover {
+    background-color: #333;
+}
+.deleteConfirmOption {
+    height: 0 !important;
+    overflow: hidden;
+    padding: 0 !important;
+}
+.confirmActive {
+    height: 400px;
+    padding: 8px 12px;
+}
+.menuCancel {
+    background: #aaaaaa;
+}
+.menuConfirm {
+    background: #D64541;
+}
+
+
+/*Mobile Preview*/
+img#mobileClose {
+    width: 40px;
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    right: 0;
+    margin: 50px;
+}
+#mobilePrev {
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, .85);
+    position: fixed;
+    z-index: 1000;
+    margin: 0;
+    display: none;
+}
+#mobileWrap {
+    height: 380px;
+    width: 390px;
+    position: absolute;
+    right: 10%;
+    top: 12%;
+}
+#desktopWrap {
+    height: 480px;
+    width: 630px;
+    position: absolute;
+    right: 45%;
+    top: 12%;
+}
+iframe {
+    width: 100%;
+    height: 100%;
+    border: 5px solid #aaa;
+}
+#mobileWrap h2, #desktopWrap h2{
+    color: white;
+    padding-bottom: .2em;
+    font-size: 4em;
+}
+@media only screen and (max-width: 1300px){
+    #mobileWrap {
+	right: 3%;
+    }
+    #desktopWrap {
+	right: 42%;
+    }
+}
+@media only screen and (max-width: 1080px){
+    #desktopWrap {
+	display: none;
+    }
+    #mobileWrap {
+	right: 27%;
+    }
+}

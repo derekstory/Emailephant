@@ -1,50 +1,47 @@
 <?php 
 session_start(); 
 include 'connect.php';
+include 'head.php';
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Emailephant: Email Builder</title>
-    <meta name="description" content="Emailephant is the most flexible email builder available. Quickly build emails using modules through our templates or your own custom code." />
-    <link href="img/favicon.png" rel="shortcut icon" />
+<div id="newEmail">
 
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="js/vendor/modernizr.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Advent+Pro:200,700,400' rel='stylesheet' type='text/css' />
-  </head>
-  <body id="newEmail">
+     <div id="confirmWrap">
 
-    <div id="confirmWrap">
-      <div id="submitConfirm"></div>
-    </div>
+          <div id="submitConfirm"></div>
+     </div>
 
-    <a href="client_options.php">
-       <img id="newEmailClose" src="http://iconizer.net/files/Brightmix/orig/monotone_close_exit_delete.png" />
-    </a> 
+     <a href="client_options.php">
+     	  <img id="newEmailClose" src="http://iconizer.net/files/Brightmix/orig/monotone_close_exit_delete.png" />
+     </a> 
 
-    <h1>Create New USAA Email</h1>
+     <h1>Create New USAA Email</h1>
 
-    <div id="wrap">
-      <form method="POST" action="" name="addEmail" id="addEmail">
-	<section class="newEmailWrap">
-	  <div class="newEmailCategory">
-	    <h3>Naming Convention</h3>
-	    <input class="textInput" type="text" name="emailTitle" />
-	  </div>
-	  <input type="hidden" name="emailClient" value="USAA" />
-	  <button id="newEmailSubmit" value="Submit" type="submit">Submit</button>
-	</section>
-      </form>
-    </div>
 
-    <?php
 
+     <div id="wrap">
+
+          <form method="POST" action="" name="addEmail" id="addEmail">
+
+	  	<div class="newEmailWrap">
+
+		     <div class="newEmailCategory">
+		     	  <h3>Naming Convention</h3>
+		     	  <input class="textInput" type="text" name="emailTitle" />
+		     </div>
+
+		     <input type="hidden" name="emailClient" value="USAA" />
+		     <button id="newEmailSubmit" value="Submit" type="submit">Submit</button>
+		</div>
+          </form>
+
+     </div>
+
+</div>
+
+
+	
+<?php
       if(isset($_POST['emailTitle']))
       {
       $errors = array();
@@ -82,21 +79,17 @@ include 'connect.php';
 		    {
                     echo "failed to copy";
                     }
-
+		    
 		    //grab the db id, redirect to the build page for new email
 		    $email_id = mysql_insert_id();	
-		    header('Location: builder.php?id=' . $email_id . '');
-          }
+		    header("Location: builder.php?id=' . $email_id . '");
+         }
       }
-    ?>    
+?>    
+   
 
-    <script src="js/foundation.min.js"></script>
-    <script src="js/emailephant.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
-
-  </body>
-</html>
+<?php
+include 'headClose.php';	
+?>
 
 
